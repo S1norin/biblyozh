@@ -1,5 +1,6 @@
 import PyPDF2
 
+
 def file_handler(name, n):
     if name.split(".")[-1] == "txt":
         x = open(name, mode="r")
