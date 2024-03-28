@@ -2,8 +2,8 @@ from flask import Flask, render_template, redirect
 from flask_login import LoginManager, login_user, login_required, logout_user
 
 from data import db_session
-from data.forms import LoginForm, RegisterForm
-from data.models import User
+from data.forms import LoginForm, RegisterForm, FileForm
+from data.models import User, Book
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'biblyozh_must_be_completed_at_any_cost'
@@ -56,6 +56,17 @@ def register():
         db_sess.commit()
         return redirect('/')
     return render_template('register.html', form=form)
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    form = FileForm()
+    if form.validate_on_submit():
+        print(form.cover.data)
+        db_sess = db_session.create_session()
+        book = Book(name=form.name.data, author=form.author.data, cover=form.cover.data)
+        db_sess.commit()
+        return redirect('/')
+    return render_template('upload.html', form=form)
 
 
 @app.route('/logout')
