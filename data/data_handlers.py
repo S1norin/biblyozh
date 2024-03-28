@@ -1,5 +1,6 @@
 import PyPDF2
 
+
 def file_handler(name, n):
     images = []
     if name.split(".")[-1] == "txt":
