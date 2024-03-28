@@ -1,0 +1,56 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import Flask, render_template, redirect\r\nfrom flask_login import LoginManager, login_user, login_required, logout_user\r\n\r\nfrom data import db_session\r\nfrom data.forms import LoginForm, RegisterForm\r\nfrom data.models import User\r\n\r\napp = Flask(__name__)\r\napp.config['SECRET_KEY'] = 'biblyozh_must_be_completed_at_any_cost'\r\nlogin_manager = LoginManager()\r\nlogin_manager.init_app(app)\r\n\r\n\r\n@login_manager.user_loader\r\ndef load_user(user_id):\r\n    db_sess = db_session.create_session()\r\n    return db_sess.query(User).get(user_id)\r\n\r\n\r\n@app.route('/login', methods=['GET', 'POST'])\r\ndef login():\r\n    form = LoginForm()\r\n    if form.validate_on_submit():\r\n        db_sess = db_session.create_session()\r\n        user = db_sess.query(User).filter(User.login == form.login.data).first()\r\n        if user and user.check_password(form.password.data):\r\n            login_user(user, remember=form.remember_me.data)\r\n            return redirect(\"/\")\r\n        return render_template('login.html',\r\n                               message=\"Неправильный логин или пароль\",\r\n                               form=form)\r\n    return render_template('login.html', title='Авторизация', form=form)\r\n\r\n\r\n@app.route('/register', methods=['GET', 'POST'])\r\ndef register():\r\n    form = RegisterForm()\r\n    if form.validate_on_submit():\r\n        if form.password.data != form.password_again.data:\r\n            return render_template('register.html', title='Регистрация',\r\n                                   form=form,\r\n                                   message=\"Пароли не совпадают\")\r\n        db_sess = db_session.create_session()\r\n        if db_sess.query(User).filter(User.login == form.login.data).first():\r\n            return render_template('register.html', title='Регистрация',\r\n                                   form=form,\r\n                                   message=\"Такой пользователь уже есть\")\r\n        user = User(\r\n            login=form.login.data\r\n        )\r\n        user.set_password(form.password.data)\r\n        db_sess.add(user)\r\n        db_sess.commit()\r\n        return redirect('/login')\r\n    return render_template('register.html', title='Регистрация', form=form)\r\n\r\n\r\n@app.route('/logout')\r\n@login_required\r\ndef logout():\r\n    logout_user()\r\n    return redirect(\"/\")\r\n\r\n\r\ndef main():\r\n    db_session.global_init(\"db/db.db\")\r\n    app.run(debug=True)\r\n\r\n\r\nif __name__ == '__main__':\r\n    main()\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 44f17b7b79696fe17c1525e7bb7b5c5a9f90c435)
++++ b/main.py	(date 1711527768664)
+@@ -23,7 +23,7 @@
+     if form.validate_on_submit():
+         db_sess = db_session.create_session()
+         user = db_sess.query(User).filter(User.login == form.login.data).first()
+-        if user and user.check_password(form.password.data):
++        if form.validate_on_submit():
+             login_user(user, remember=form.remember_me.data)
+             return redirect("/")
+         return render_template('login.html',
+Index: templates/login.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"utf-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\r\n    <title>{{title}}</title>\r\n</head>\r\n<body>\r\n    {% if current_user.is_authenticated %}\r\n        <a class=\"navbar-brand\" href=\"/logout\">{{ current_user.login }}</a>\r\n    {% else %}\r\n        <p>\r\n            <a class=\"btn btn-primary \" href=\"/register\">Зарегистрироваться</a>\r\n        </p>\r\n        <h1>Авторизация</h1>\r\n        <form action=\"\" method=\"post\">\r\n            {{ form.hidden_tag() }}\r\n            <p>\r\n                {{ form.login.label }}<br>\r\n                {{ form.login(class=\"form-control\") }}<br>\r\n                {% for error in form.login.errors %}\r\n                    <div class=\"alert alert-danger\" role=\"alert\">\r\n                        {{ error }}\r\n                    </div>\r\n                {% endfor %}\r\n            </p>\r\n            <p>\r\n                {{ form.password.label }}<br>\r\n                {{ form.password(class=\"form-control\", type=\"password\") }}<br>\r\n                {% for error in form.password.errors %}\r\n                    <div class=\"alert alert-danger\" role=\"alert\">\r\n                        {{ error }}\r\n                    </div>\r\n                {% endfor %}\r\n            </p>\r\n            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>\r\n            <p>{{ form.submit(type=\"submit\", class=\"btn btn-primary\") }}</p>\r\n            <div>{{ message }}</div>\r\n        </form>\r\n    {% endif %}\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/login.html b/templates/login.html
+--- a/templates/login.html	(revision 44f17b7b79696fe17c1525e7bb7b5c5a9f90c435)
++++ b/templates/login.html	(date 1711528010090)
+@@ -16,7 +16,7 @@
+         <form action="" method="post">
+             {{ form.hidden_tag() }}
+             <p>
+-                {{ form.login.label }}<br>
++                {{ form.login.label() }}<br>
+                 {{ form.login(class="form-control") }}<br>
+                 {% for error in form.login.errors %}
+                     <div class="alert alert-danger" role="alert">
+@@ -25,7 +25,7 @@
+                 {% endfor %}
+             </p>
+             <p>
+-                {{ form.password.label }}<br>
++                {{ form.password.label() }}<br>
+                 {{ form.password(class="form-control", type="password") }}<br>
+                 {% for error in form.password.errors %}
+                     <div class="alert alert-danger" role="alert">
+@@ -33,7 +33,7 @@
+                     </div>
+                 {% endfor %}
+             </p>
+-            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
++            <p>{{ form.remember_me() }} {{ form.remember_me.label() }}</p>
+             <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+             <div>{{ message }}</div>
+         </form>

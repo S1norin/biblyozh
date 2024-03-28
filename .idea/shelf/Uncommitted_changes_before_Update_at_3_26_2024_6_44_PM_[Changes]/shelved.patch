@@ -1,0 +1,14 @@
+Index: function.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import PyPDF2\r\n\r\ndef file_handler(name, n):\r\n    if name.split(\".\")[-1] == \"txt\":\r\n        x = open(name, mode=\"r\")\r\n        string = x.read()\r\n    elif name.split(\".\")[-1] == \"pdf\":\r\n        x = open(name, 'rb')\r\n        reader = PyPDF2.PdfReader(x)\r\n        string = \"\"\r\n        for i in reader.pages:\r\n            string = string + i.extract_text()\r\n    x.close()\r\n    result = []\r\n    for i in range(n, len(string), n):\r\n        result.append(string[i - n:i])\r\n        if len(string) - n < i:\r\n            result.append(string[i:])\r\n    return result
+===================================================================
+diff --git a/function.py b/function.py
+--- a/function.py	
++++ b/function.py	
+@@ -1,4 +1,4 @@
+-import PyPDF2
++    import PyPDF2
+ 
+ def file_handler(name, n):
+     if name.split(".")[-1] == "txt":
