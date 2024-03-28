@@ -6,15 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{title}}</title>
 </head>
+
 <body>
-    <div class="left-panel">
-        <div class="notes-title">Мои заметки</div>
-        <button class="comment-button">Коментарии</button>
-        <br>
-        <button class="quotes-button">Цитаты</button>
-        <div class="bookmark-title">Закладки</div>
-        {{% for bookmark in bookmarks %}}
-            <p class="bookmarks">{{bookmark.page}}</p>
+    <div class="page-content">
+        <div class="left-container">
+            <div class="notes-title">Мои заметки</div>
+            <button class="comment-button">Коментарии</button>
+            <br>
+            <button class="quotes-button">Цитаты</button>
+            <div class="bookmark-title">Закладки</div>
+            {{% for bookmark in bookmarks %}}
+                <p class="bookmarks">{{bookmark.page}}</p>
+        </div>
+
+        <div class="text-container">
+            <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui maximus justo cursus suscipit. Maecenas placerat nec ex non egestas. Curabitur elit dolor, aliquet id ante sit amet, volutpat ultrices metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum porta malesuada massa, ut bibendum diam tristique nec. Curabitur congue elit ante, at gravida sapien accumsan eget. Fusce sagittis leo libero, quis scelerisque arcu tincidunt nec. Nam a libero non ante cursus congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam condimentum, sagittis tortor sit amet, lacinia nunc. Quisque dictum aliquet elit, sed rutrum massa dignissim vitae. Vestibulum facilisis ut mauris ac vehicula.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui maximus justo cursus suscipit. Maecenas placerat nec ex non egestas. Curabitur elit dolor, aliquet id ante sit amet, volutpat ultrices metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum porta malesuada massa, ut bibendum diam tristique nec. Curabitur congue elit ante, at gravida sapien accumsan eget. Fusce sagittis leo libero, quis scelerisque arcu tincidunt nec. Nam a libero non ante cursus congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam condimentum.
+                Curabitur congue elit ante, at gravida sapien accumsan eget. Fusce sagittis leo libero, quis scelerisque arcu tincidunt nec. Nam a libero non ante cursus congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam condimentum.congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam condimentum. Radam usen 
+        Maecenas placerat nec ex non egestas. </div>
+
+        <div class="progress-parent">
+            <div class="page-count">{{book.current_page}}/{{book.page_count}}</div>
+            <div class="progress-percent">{{(book.current_page/book.page_count) * 100}}</div>
+        </div>
+            <div class="progess-bar">
+                <div class="completed-progress-bar"></div>
+        </div>
+
+        </div>
     </div>
 </body>
 </html>
