@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Регистрация</title>
-   <link rel="stylesheet" href="../static/styles/login.css">
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="../static/styles/login.css">
 </head>
 
 <body>
-<div class="overbox">
-    <form method="post">
-      {{ form.hidden_tag() }}
-    <div class="title">РЕГИСТРАЦИЯ</div>
+<div class="container">
+    <div class="overbox">
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="title">РЕГИСТРАЦИЯ</div>
 
-    <div class="input">
-       <label for="regname">Имя пользователя</label>
-         {{ form.login(class="form-control", id="regname", type="text") }}
-       <span class="spin"></span>
+            <div class="input">
+                <label for="regname">Имя пользователя</label>
+                {{ form.login(class="form-control", id="regname") }}
+                <span class="spin"></span>
+            </div>
+
+            <div class="input">
+                <label for="regpass">Пароль</label>
+                {{ form.password(class="form-control", type="password", id="regpass") }}
+                <span class="spin"></span>
+            </div>
+
+            <div class="input">
+                <label for="reregpass">Повторите пароль</label>
+                {{ form.password_again(class="form-control", type="password", id="reregpass") }}
+                <span class="spin"></span>
+            </div>
+
+            <div class="button">
+                <button><span>ДАЛЕЕ</span></button>
+            </div>
+        </form>
     </div>
 
-    <div class="input">
-       <label for="regpass">Пароль</label>
-        {{ form.password(class="form-control", type="password", id="regpass") }}
-       <span class="spin"></span>
+    <div class="errors">
+        <p>
+            {{ message }}
+        </p>
+
+        {% for error in form.password.errors %}
+            <p>
+                {{ error }}
+            </p>
+        {% endfor %}
+
+        {% for error in form.password_again.errors %}
+            <p>
+                {{ error }}
+            </p>
+        {% endfor %}
     </div>
+</div>
 
-    <div class="input">
-       <label for="reregpass">Повторите пароль</label>
-        {{ form.password_again(class="form-control", type="password", id="reregpass") }}
-       <span class="spin"></span>
-    </div>
 
-    <div class="button">
-       <button><span>ДАЛЕЕ</span></button>
-    </div>
-    </form>
- </div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="../static/scripts/register.js"></script>
 
- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src="../static/scripts/register.js"></script>
-
- </body>
+</body>

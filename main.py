@@ -24,8 +24,9 @@ def login():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.login == form.login.data).first()
         if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember_me.data)
+            login_user(user, remember=True)
             return redirect("/")
+        form.login.data = ''
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
@@ -37,12 +38,14 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Регистрация',
+            form.login.data = ''
+            return render_template('register.html',
                                    form=form,
                                    message="Пароли не совпадают")
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.login == form.login.data).first():
-            return render_template('register.html', title='Регистрация',
+            form.login.data = ''
+            return render_template('register.html',
                                    form=form,
                                    message="Такой пользователь уже есть")
         user = User(
@@ -51,8 +54,8 @@ def register():
         user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
-        return redirect('/login')
-    return render_template('register.html', title='Регистрация', form=form)
+        return redirect('/')
+    return render_template('register.html', form=form)
 
 
 @app.route('/logout')
