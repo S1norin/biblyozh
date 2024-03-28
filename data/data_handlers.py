@@ -1,4 +1,5 @@
 import PyPDF2
+from PIL import Image
 
 
 def file_handler(name, n):
@@ -11,11 +12,11 @@ def file_handler(name, n):
         reader = PyPDF2.PdfReader(x)
         k = reader.getPage(0)['/Resources']['/XObject'].getObject()
         for obg in k:
-            if obg[obg]['/Subtipe'] == '/Image':
-                size = (xObject[obj]['/Width'], xObject[obj]['/Height'])
-                data = x0bject[obj].getData()
+            if k[obg]['/Subtipe'] == '/Image':
+                size = (k[obg]['/Width'], k[obg]['/Height'])
+                data = k[obg].getData()
                 mode = "RGB"
-                if obg[obj]['/Filter'] == '/FlateDecode':
+                if k[obg]['/Filter'] == '/FlateDecode':
                     img = Image.frombytes(mode, size, data)
                 else:
                     print("Error")
