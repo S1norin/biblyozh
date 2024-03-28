@@ -2,15 +2,15 @@ body {
     background-color: #F0D9BE;
 }
 
-.left-panel {
-    background-color: white;
-    max-width: 170;
-    min-width: 170;
-    position: absolute;
+.page-content {
+    display: flex;
+
+}
+
+.left-container {
+    width: 170;
     margin-left: 10%;
-    border-color: aqua;
-    opacity: 0.5;
-    
+    margin-right: 60px;
 }
 
 .notes-title {
@@ -20,8 +20,9 @@ body {
 }
 
 .comment-button {
-    margin: 1% 20%;
+
     font-weight: bolder;
+    margin: 3% 17%;
     padding: 8px 40px;
     border-radius: 10px;
     background-color: #F6CA97;
@@ -30,7 +31,7 @@ body {
 
 .quotes-button {
     font-weight: bolder;
-    margin: 1% 26%;
+    margin: 3% 23%;
     padding: 8px 40px;
     border-radius: 10px;
     background-color: #F6CA97;
@@ -46,4 +47,19 @@ body {
 .bookmarks {
     text-align: center;
     font-weight: bolder;
+}
+
+.text-container {
+}
+
+.content {
+    font-size: 22px;
+}
+
+.progress-parent {
+    display: flex;
+}
+
+.progress-percent {
+    
 }
