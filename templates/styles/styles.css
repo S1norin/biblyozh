@@ -1,0 +1,49 @@
+body {
+    background-color: #F0D9BE;
+}
+
+.left-panel {
+    background-color: white;
+    max-width: 170;
+    min-width: 170;
+    position: absolute;
+    margin-left: 10%;
+    border-color: aqua;
+    opacity: 0.5;
+    
+}
+
+.notes-title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.comment-button {
+    margin: 1% 20%;
+    font-weight: bolder;
+    padding: 8px 40px;
+    border-radius: 10px;
+    background-color: #F6CA97;
+    border-style: none;
+}
+
+.quotes-button {
+    font-weight: bolder;
+    margin: 1% 26%;
+    padding: 8px 40px;
+    border-radius: 10px;
+    background-color: #F6CA97;
+    border-style: none;
+}
+
+.bookmark-title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.bookmarks {
+    text-align: center;
+    font-weight: bolder;
+}

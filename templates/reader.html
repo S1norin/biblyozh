@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link href="styles/styles.css" rel="stylesheet"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="left-panel">
+        <div class="notes-title">Мои заметки</div>
+        <button class="comment-button">Коментарии</button>
+        <br>
+        <button class="quotes-button">Цитаты</button>
+        <div class="bookmark-title">Закладки</div>
+        {{% for bookmark in bookmarks %}}
+            <p class="bookmarks">{{bookmark.page}}</p>
+    </div>
+</body>
+</html>
