@@ -10,13 +10,13 @@ def file_handler(name, n):
     elif name.split(".")[-1] == "pdf":
         x = open(name, 'rb')
         reader = PyPDF2.PdfReader(x)
-        k = reader.getPage(0)['/Resources']['/XObject'].getObject()
-        for obg in k:
-            if k[obg]['/Subtipe'] == '/Image':
-                size = (k[obg]['/Width'], k[obg]['/Height'])
-                data = k[obg].getData()
+        XObject = reader.pages[0]['/Resources']['/XObject'].getObject()
+        for obg in XObject:
+            if XObject[obg]['/Subtipe'] == '/Image':
+                size = (XObject[obg]['/Width'], XObject[obg]['/Height'])
+                data = XObject[obg].getData()
                 mode = "RGB"
-                if k[obg]['/Filter'] == '/FlateDecode':
+                if XObject[obg]['/Filter'] == '/FlateDecode':
                     img = Image.frombytes(mode, size, data)
                 else:
                     print("Error")
