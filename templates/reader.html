@@ -8,6 +8,12 @@
 </head>
 
 <body>
+    <div class="button-row">
+        <button>Закладка</button>
+        <button>Цитата</button>
+        <button>Пометка</button>
+    </div>
+
     <div class="page-content">
         <div class="left-container">
             <div class="notes-title">Мои заметки</div>
@@ -29,11 +35,20 @@
             <div class="page-count">{{book.current_page}}/{{book.page_count}}</div>
             <div class="progress-percent">{{(book.current_page/book.page_count) * 100}}</div>
         </div>
-            <div class="progess-bar">
-                <div class="completed-progress-bar"></div>
-        </div>
+<!--            <div class="progess-bar-overall">-->
+<!--                <div class="empty-progress-bar"></div>-->
+<!--                <div class="completed-progress-bar"></div>-->
+<!--        </div>-->
 
         </div>
-    </div>
+
+
+        <div class="right-container">
+            <div class="content-title">Содержание</div>
+            {{$ for element in content}}
+                <p class="contents">{{element.name}}</p>
+            {{% endfor %}}
+            </div>
+        </div>
 </body>
 </html>

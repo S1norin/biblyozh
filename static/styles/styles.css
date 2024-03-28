@@ -1,5 +1,16 @@
+
+
 body {
     background-color: #F0D9BE;
+}
+
+.button-row {
+    text-align: center;
+    background-color: #F6CA97;
+    padding: 8px 0;
+    border-radius: 20px;
+    width: 240px;
+    margin: 10px auto;
 }
 
 .page-content {
@@ -22,7 +33,8 @@ body {
 .comment-button {
 
     font-weight: bolder;
-    margin: 3% 17%;
+    width: 150px;
+    margin: 3% 0;
     padding: 8px 40px;
     border-radius: 10px;
     background-color: #F6CA97;
@@ -31,7 +43,8 @@ body {
 
 .quotes-button {
     font-weight: bolder;
-    margin: 3% 23%;
+    width: 150px;
+    margin: 3% 0;
     padding: 8px 40px;
     border-radius: 10px;
     background-color: #F6CA97;
@@ -49,11 +62,33 @@ body {
     font-weight: bolder;
 }
 
+
+
 .text-container {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #E8CDAE;
+    padding: 50px;
+    border-radius: 25px;
 }
 
 .content {
     font-size: 22px;
+}
+
+.progress-bar-overall {
+    display: float;
+}
+
+.empty-progress-bar{
+    background-color: white;
+    width: 100%;
+    height: 10px;
+}
+
+.completed-progress-bar{
+    background-color: black;
+    width: 100%;
+    height: 10px;
 }
 
 .progress-parent {
@@ -61,5 +96,26 @@ body {
 }
 
 .progress-percent {
-    
+    flex: 1;
+}
+
+.page-count {
+    flex: 10;
+}
+
+.right-container {
+    width: 170;
+    margin-right: 10%;
+    margin-left: 60px;
+}
+
+.content-title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.contents {
+    text-align: center;
+    font-weight: bolder;
 }
