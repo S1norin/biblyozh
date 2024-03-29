@@ -2,6 +2,7 @@ import sqlalchemy
 from flask_login import UserMixin
 from sqlalchemy import orm
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 
 from data.db_session import SqlAlchemyBase
 
@@ -24,6 +25,9 @@ class User(SqlAlchemyBase, UserMixin):
 
 
 class Book(SqlAlchemyBase):
+    def set_cover_path(self, file_name):
+        self.cover_path = secure_filename(file_name)
+
     __tablename__ = 'books'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
@@ -33,6 +37,7 @@ class Book(SqlAlchemyBase):
     name = sqlalchemy.Column(sqlalchemy.String)
     work_size = sqlalchemy.Column(sqlalchemy.Integer)
     author = sqlalchemy.Column(sqlalchemy.String)
+    cover_path = sqlalchemy.Column(sqlalchemy.String)
     filename = sqlalchemy.Column(sqlalchemy.String)
     progress = sqlalchemy.Column(sqlalchemy.Integer)
     user = orm.relationship('User')

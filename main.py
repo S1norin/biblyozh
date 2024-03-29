@@ -63,7 +63,8 @@ def upload():
     if form.validate_on_submit():
         print(form.cover.data)
         db_sess = db_session.create_session()
-        book = Book(name=form.name.data, author=form.author.data, cover=form.cover.data)
+        book = Book(name=form.name.data, author=form.author.data)
+        book.set_cover_path(form.cover.data)
         db_sess.commit()
         return redirect('/')
     return render_template('upload.html', form=form)
