@@ -5,33 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <title>Biblyozh</title>
-    <!-- <link rel="stylesheet" href="css\normalize.css"> -->
-    <link rel="stylesheet" href="css\library.css">
+    <link rel="stylesheet" href="../static/styles/library.css">
 </head>
 
 <body>
     <header>
         <div class="header-container">
-            <a class="logo" href="#">
-                <img src="#" alt="logo img">
+            <a class="logo" href="/main">
+                <img src="../static/images/logo.svg" alt="logo img" class="logo-img">
             </a>
 
             <nav class="header-nav">
+                
                 <ul class="header-list">
                     <li class="header-list-item">
-                        <a href="#" class="header-link">
+                        <a href="/reader" class="header-link">
                             Читать 
                         </a>
                     </li>
 
                     <li class="header-list-item">
-                        <a href="#" class="header-link">
+                        <a href="/library" class="header-link">
                             Библиотека
                         </a>
                     </li>
 
                     <li class="header-list-item">
-                        <a href="#" class="header-link">
+                        <a href="/login" class="header-link login-link">
                             Войти
                         </a>
                     </li>
@@ -40,26 +40,202 @@
         </div>
     </header>
 
-    <h1 class="library-title">Библиотека</h1>
-    <div class="container">
-        <div class="book-names-container">
-            <div class="names-list">
-                <button class="book-name"></button>
-            </div>
-            <div class="add-book-container">
-                <button class="add-book"></button>
-            </div>
-        </div>
 
-        <div class="books-container">
-            <button>
-                <div class="cover-container">
-                    <img src="#" alt="">
+    <main>
+        <!-- <h1 class="library-title">Библиотека</h1> -->
+
+        <div class="container">
+
+            <div class="book-names-container">
+                <div class="names-list">
+                    <button class="book-name">Рассказы</button>
+                    <button class="book-name">Повести</button>
+                    <button class="book-name">Романы</button>
                 </div>
-                <div class="book-info"></div>
-            </button>
-        </div>
-    </div>    
+
+                    
+                <button class="add-book"><img src="../static/images/plus.png" alt=""><span class="add-book-label">Добавить книгу</span></button>
+
+            </div>
+
+            <div class="books-container">
+                <div class="books-elems-container">
+                    <button class="book">
+                        <div class="cover-container">
+                            <img class="cover-img" src="../static/images/Обложка.png" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="book">
+                        <div class="cover-container">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="book">
+                        <div class="cover-container">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="book">
+                        <div class="cover-container">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="book">
+                        <div class="cover-container">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="book">
+                        <div class="cover-container">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="book">
+                        <div class="cover-container">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="book">
+                        <div class="cover-container">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="book">
+                        <div class="cover-container">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="book">
+                        <div class="cover-container">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="book-info">
+                            <div class="progress-bar">
+                                <div class="completed"></div>
+                                <div class="remain"></div>
+                            </div>
+                            <div class="info">
+                                <span class="pages">2534/6643</span>
+                                <span class="name">Название книги</span>
+                                <span class="percentage">34.68%</span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+        </div> 
+
+    </main>
+      
 </body>
 
 

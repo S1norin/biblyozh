@@ -77,6 +77,11 @@ def logout():
     return redirect("/")
 
 
+@app.route('/library')
+def library():
+    return render_template('library.html')
+
+
 def main():
     db_session.global_init("db/db.db")
     app.run(debug=True)
