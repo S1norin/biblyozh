@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileRequired
 from wtforms import PasswordField, StringField, TextAreaField, SubmitField, EmailField, BooleanField, FileField
 from wtforms.validators import DataRequired
 
@@ -21,3 +22,4 @@ class FileForm(FlaskForm):
     name = StringField('Название книги', validators=[DataRequired()])
     author = StringField('Автор', validators=[DataRequired()])
     cover = FileField('Обложка')
+    file = FileField('Файл')

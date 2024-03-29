@@ -64,6 +64,10 @@ def upload():
         db_sess = db_session.create_session()
         book = Book(name=form.name.data, author=form.author.data, work_size=-1)
         book.set_cover_path(form.cover.data)
+        print(form.file.data)
+        book.set_file_path(form.file.data)
+
+
         db_sess.add(book)
         db_sess.commit()
         return redirect('/')

@@ -28,6 +28,9 @@ class Book(SqlAlchemyBase):
     def set_cover_path(self, file_name):
         self.cover_path = secure_filename(file_name)
 
+    def set_file_path(self, file_name):
+        self.filename = secure_filename(file_name)
+
     __tablename__ = 'books'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
