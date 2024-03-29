@@ -7,6 +7,7 @@ from data.models import User, Book
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'biblyozh_must_be_completed_at_any_cost'
+WTF_CSRF_SECRET_KEY = 'biblyozh_must_be_completed_at_any_cost'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -63,11 +64,10 @@ def upload():
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         book = Book(name=form.name.data, author=form.author.data, work_size=-1)
-        book.set_cover_path(form.cover.data)
-        print(form.file.data)
-        book.set_file_path(form.file.data)
-
-
+        book.set_cover_path(form.cover.data.filename)
+        book.set_file_path(form.file.data.filename)
+        form.cover.data.save("petr.jpg") # Дописать сохранение обложки
+        form.file.data.save("oleg.epub") # Дописать сохранение файла
         db_sess.add(book)
         db_sess.commit()
         return redirect('/')
