@@ -1,13 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <link href="../static/styles/styles.css" rel="stylesheet">
+    <link href="../static/styles/reader.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{title}}</title>
 </head>
 
 <body>
+    <header>
+        <div class="header-container">
+            <a class="logo" href="/main">
+                <img src="../static/images/logo.svg" alt="logo img" class="logo-img">
+            </a>
+
+            <nav class="header-nav">
+
+                <ul class="header-list">
+                    <li class="header-list-item">
+                        <a href="/reader" class="header-link">
+                            Читать
+                        </a>
+                    </li>
+
+                    <li class="header-list-item">
+                        <a href="/library" class="header-link">
+                            Библиотека
+                        </a>
+                    </li>
+
+                    <li class="header-list-item">
+                        <a href="/login" class="header-link login-link">
+                            Войти
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <div class="button-row">
         <button>Закладка</button>
         <button>Цитата</button>

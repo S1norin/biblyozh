@@ -1,4 +1,82 @@
+@font-face {
+    font-family: 'Inglobal';
+    src: local('Inglobal-Bold'),
+    url('Inglobal-Bold.woff2') format("woff2");
+    font-weight: 800;
+    font-style: normal;
+}
 
+@font-face {
+    font-family: 'Mariupol';
+    src: local('Mariupol-Medium'),
+    url('MARIUPOL-MEDIUM.TTF') format("ttf");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mariupol';
+    src: local('Mariupol-Bold'),
+    url('MARIUPOL-BOLD.TTF') format("ttf");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@media (max-width: 1420px) {
+    .book-names-container {
+        display: none;
+    }
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+header {
+    background-color: #E8CDAE;
+    height: 62px;
+    margin-bottom: 25px;
+}
+
+.header-container {
+    min-width: 950px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:auto;
+    padding-top: 10px;
+    width: 100%;
+    font-family: 'Mariupol';
+    font-weight: 600;
+}
+
+.header-list {
+    list-style-type: none;
+    margin: 0;
+}
+
+.header-list-item {
+    display: inline;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    padding: 25px;
+}
+
+.header-nav {
+    display: inline-block;
+    margin-bottom: -5px;
+    margin-right: 100px;
+}
+
+.login-link {
+    font-weight: 800;
+}
+
+.logo {
+    margin-left: 85px;
+}
 
 body {
     background-color: #F0D9BE;
