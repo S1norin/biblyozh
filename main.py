@@ -1,3 +1,5 @@
+import random
+
 from flask import Flask, render_template, redirect
 from flask_login import LoginManager, login_user, login_required, logout_user
 
@@ -63,11 +65,14 @@ def upload():
     form = FileForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        book = Book(name=form.name.data, author=form.author.data, work_size=-1)
-        book.set_cover_path(form.cover.data.filename)
-        book.set_file_path(form.file.data.filename)
-        form.cover.data.save("petr.jpg") # Дописать сохранение обложки
-        form.file.data.save("oleg.epub") # Дописать сохранение файла
+        book_id = random.randrange(100000)
+        while db_sess.query(Book).filter(Book.id == book_id).first():
+            book_id = random.randrange(100000)
+        book = Book(id=book_id, name=form.name.data, author=form.author.data, work_size=-1)
+        book.set_cover_path(book_id, form.cover.data.filename)
+        book.set_book_path(book_id, form.file.data.filename)
+        form.cover.data.save(f'{"data/" + book.cover_path}')
+        form.file.data.save(f'{"data/" + book.book_path}')
         db_sess.add(book)
         db_sess.commit()
         return redirect('/')

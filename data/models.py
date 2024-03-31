@@ -25,22 +25,24 @@ class User(SqlAlchemyBase, UserMixin):
 
 
 class Book(SqlAlchemyBase):
-    def set_cover_path(self, file_name):
-        self.cover_path = secure_filename(file_name)
+    def set_cover_path(self, id, original_filename):
+        format = secure_filename(original_filename).split(".")[-1]
+        self.cover_path = f"covers/{'.'.join([str(id), format])}"
 
-    def set_file_path(self, file_name):
-        self.filename = secure_filename(file_name)
+    def set_book_path(self, id, original_filename):
+        format = secure_filename(original_filename).split(".")[-1]
+        self.book_path = f"books/{'.'.join([str(id), format])}"
 
     __tablename__ = 'books'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
-                           primary_key=True, autoincrement=True)
+                           primary_key=True)
     user_id = sqlalchemy.Column(sqlalchemy.Integer,
                                     sqlalchemy.ForeignKey("users.id"))
     name = sqlalchemy.Column(sqlalchemy.String)
     work_size = sqlalchemy.Column(sqlalchemy.Integer)
     author = sqlalchemy.Column(sqlalchemy.String)
     cover_path = sqlalchemy.Column(sqlalchemy.String)
-    filename = sqlalchemy.Column(sqlalchemy.String)
+    book_path = sqlalchemy.Column(sqlalchemy.String)
     progress = sqlalchemy.Column(sqlalchemy.Integer)
     user = orm.relationship('User')
