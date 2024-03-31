@@ -198,3 +198,14 @@ body {
     text-align: center;
     font-weight: bolder;
 }
+
+.about-book-button{
+    text-align: center;
+    font-weight: bolder;
+    width: 150px;
+    margin: 3% 0;
+    padding: 8px 5px;
+    border-radius: 10px;
+    background-color: #F6CA97;
+    border-style: none;
+}

@@ -50,7 +50,7 @@
             <div class="notes-title">Мои заметки</div>
             <button class="comment-button">Коментарии</button>
             <br>
-            <button class="quotes-button">Цитаты</button>
+            <button class="quotes-button">Смешной звук</button>
             <div class="bookmark-title">Закладки</div>
             {{% for bookmark in bookmarks %}}
                 <p class="bookmarks">{{bookmark.page}}</p>
@@ -75,11 +75,8 @@
 
 
         <div class="right-container">
-            <div class="content-title">Содержание</div>
-            {{$ for element in content}}
-                <p class="contents">{{element.name}}</p>
-            {{% endfor %}}
-            </div>
+            <div class="about-book-button">О книге</div>
+        </div>
         </div>
 </body>
 </html>
