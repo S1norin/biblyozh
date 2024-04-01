@@ -8,74 +8,100 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
-            <a class="logo" href="/main">
-                <img src="../static/images/logo.svg" alt="logo img" class="logo-img">
-            </a>
+<header>
+    <div class="header-container">
+        <a class="logo" href="/main">
+            <img src="../static/images/logo.svg" alt="logo img" class="logo-img">
+        </a>
 
-            <nav class="header-nav">
+        <nav class="header-nav">
 
-                <ul class="header-list">
-                    <li class="header-list-item">
-                        <a href="/reader" class="header-link">
-                            Читать
-                        </a>
-                    </li>
+            <ul class="header-list">
+                <li class="header-list-item">
+                    <a href="/reader" class="header-link">
+                        Читать
+                    </a>
+                </li>
 
-                    <li class="header-list-item">
-                        <a href="/library" class="header-link">
-                            Библиотека
-                        </a>
-                    </li>
+                <li class="header-list-item">
+                    <a href="/library" class="header-link">
+                        Библиотека
+                    </a>
+                </li>
 
-                    <li class="header-list-item">
-                        <a href="/login" class="header-link login-link">
-                            Войти
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+                <li class="header-list-item">
+                    <a href="/login" class="header-link login-link">
+                        Войти
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <div class="button-row">
-        <button>Закладка</button>
-        <button>Пометка</button>
+<div class="button-row">
+    <button>Закладка</button>
+    <button>Пометка</button>
+</div>
+
+<div class="page-content">
+    <div class="left-container">
+        <div class="notes-title">Мои заметки</div>
+        <button class="comment-button">Коментарии</button>
+        <br>
+        <button class="quotes-button" onclick="play()">Смешной звук</button>
+
+        <script>
+            function play() {
+                var audio = new Audio(
+    '../static/metal-pipe-falling-sound-effect.mp3');
+                audio.play();
+            }
+        </script>
+        <div class="bookmark-title">Закладки</div>
+        {{% for bookmark in bookmarks %}}
+        <p class="bookmarks">{{bookmark.page}}</p>
     </div>
 
-    <div class="page-content">
-        <div class="left-container">
-            <div class="notes-title">Мои заметки</div>
-            <button class="comment-button">Коментарии</button>
-            <br>
-            <button class="quotes-button">Смешной звук</button>
-            <div class="bookmark-title">Закладки</div>
-            {{% for bookmark in bookmarks %}}
-                <p class="bookmarks">{{bookmark.page}}</p>
+    <div class="text-container">
+        <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui maximus justo
+            cursus suscipit. Maecenas placerat nec ex non egestas. Curabitur elit dolor, aliquet id ante sit amet,
+            volutpat ultrices metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
+            turpis egestas. Vestibulum porta malesuada massa, ut bibendum diam tristique nec. Curabitur congue elit
+            ante, at gravida sapien accumsan eget. Fusce sagittis leo libero, quis scelerisque arcu tincidunt nec. Nam a
+            libero non ante cursus congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam
+            luctus leo at tempus semper. Vivamus et quam condimentum, sagittis tortor sit amet, lacinia nunc. Quisque
+            dictum aliquet elit, sed rutrum massa dignissim vitae. Vestibulum facilisis ut mauris ac vehicula.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui maximus justo cursus suscipit.
+            Maecenas placerat nec ex non egestas. Curabitur elit dolor, aliquet id ante sit amet, volutpat ultrices
+            metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+            Vestibulum porta malesuada massa, ut bibendum diam tristique nec. Curabitur congue elit ante, at gravida
+            sapien accumsan eget. Fusce sagittis leo libero, quis scelerisque arcu tincidunt nec. Nam a libero non ante
+            cursus congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at
+            tempus semper. Vivamus et quam condimentum.
+            Curabitur congue elit ante, at gravida sapien accumsan eget. Fusce sagittis leo libero, quis scelerisque
+            arcu tincidunt nec. Nam a libero non ante cursus congue. Phasellus magna lorem, molestie porttitor iaculis
+            ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam condimentum.congue. Phasellus magna
+            lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam
+            condimentum. Radam usen
+            Maecenas placerat nec ex non egestas.
         </div>
-
-        <div class="text-container">
-            <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui maximus justo cursus suscipit. Maecenas placerat nec ex non egestas. Curabitur elit dolor, aliquet id ante sit amet, volutpat ultrices metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum porta malesuada massa, ut bibendum diam tristique nec. Curabitur congue elit ante, at gravida sapien accumsan eget. Fusce sagittis leo libero, quis scelerisque arcu tincidunt nec. Nam a libero non ante cursus congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam condimentum, sagittis tortor sit amet, lacinia nunc. Quisque dictum aliquet elit, sed rutrum massa dignissim vitae. Vestibulum facilisis ut mauris ac vehicula.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui maximus justo cursus suscipit. Maecenas placerat nec ex non egestas. Curabitur elit dolor, aliquet id ante sit amet, volutpat ultrices metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum porta malesuada massa, ut bibendum diam tristique nec. Curabitur congue elit ante, at gravida sapien accumsan eget. Fusce sagittis leo libero, quis scelerisque arcu tincidunt nec. Nam a libero non ante cursus congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam condimentum.
-                Curabitur congue elit ante, at gravida sapien accumsan eget. Fusce sagittis leo libero, quis scelerisque arcu tincidunt nec. Nam a libero non ante cursus congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam condimentum.congue. Phasellus magna lorem, molestie porttitor iaculis ut, dictum et orci. Aliquam luctus leo at tempus semper. Vivamus et quam condimentum. Radam usen 
-        Maecenas placerat nec ex non egestas. </div>
 
         <div class="progress-parent">
             <div class="page-count">{{book.current_page}}/{{book.page_count}}</div>
             <div class="progress-percent">{{(book.current_page/book.page_count) * 100}}</div>
         </div>
-<!--            <div class="progess-bar-overall">-->
-<!--                <div class="empty-progress-bar"></div>-->
-<!--                <div class="completed-progress-bar"></div>-->
-<!--        </div>-->
+        <!--            <div class="progess-bar-overall">-->
+        <!--                <div class="empty-progress-bar"></div>-->
+        <!--                <div class="completed-progress-bar"></div>-->
+        <!--        </div>-->
 
-        </div>
+    </div>
 
 
-        <div class="right-container">
-            <div class="about-book-button">О книге</div>
-        </div>
-        </div>
+    <div class="right-container">
+        <div class="about-book-button">О книге</div>
+    </div>
+</div>
 </body>
 </html>
