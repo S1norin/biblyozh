@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <link href="../static/styles/reader.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{title}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/reader.css') }}">
 </head>
 
 <body>
 <header>
     <div class="header-container">
         <a class="logo" href="/main">
-            <img src="../static/images/logo.svg" alt="logo img" class="logo-img">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="logo img" class="logo-img">
         </a>
 
         <nav class="header-nav">
@@ -54,7 +54,7 @@
         <script>
             function play() {
                 var audio = new Audio(
-    '../static/metal-pipe-falling-sound-effect.mp3');
+    '{{ url_for('static', filename='metal-pipe-falling-sound-effect.mp3') }}');
                 audio.play();
             }
         </script>

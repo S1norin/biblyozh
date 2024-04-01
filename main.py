@@ -60,6 +60,7 @@ def register():
         return redirect('/')
     return render_template('register.html', form=form)
 
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     form = FileForm()
@@ -89,6 +90,7 @@ def logout():
 @app.route('/library')
 def library():
     return render_template('library.html')
+
 
 @app.route('/reader/<int:book_id>/<int:current_page>')
 def reader(book_id, current_page):
