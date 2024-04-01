@@ -90,6 +90,12 @@ def logout():
 def library():
     return render_template('library.html')
 
+@app.route('/reader/<int:book_id>/<int:current_page>')
+def reader(book_id, current_page):
+    db_sess = db_session.create_session()
+    selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
+    return render_template('current_page.html', book=selected_book)
+
 
 def main():
     db_session.global_init("db/db.db")

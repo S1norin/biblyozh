@@ -23,3 +23,6 @@ class FileForm(FlaskForm):
     author = StringField('Автор', validators=[DataRequired()])
     cover = FileField('Обложка')
     file = FileField('Файл')
+
+class CommentForm(FlaskForm):
+    content = StringField('Содержание комментария')
