@@ -1,15 +1,6 @@
 @font-face {
-    font-family: 'Inglobal';
-    src: local('Inglobal-Bold'), 
-    url('Inglobal-Bold.woff2') format("woff2");
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'Mariupol';
-    src: local('Mariupol-Medium'), 
-    url('MARIUPOL-MEDIUM.TTF') format("ttf");
+    src: url('../fonts/MARIUPOL-MEDIUM.TTF') format("ttf");
     font-weight: 600;
     font-style: normal;
 }
@@ -17,7 +8,7 @@
 @font-face {
     font-family: 'Mariupol';
     src: local('Mariupol-Bold'), 
-    url('MARIUPOL-BOLD.TTF') format("ttf");
+    url('../../static/fonts/MARIUPOL-BOLD.TTF') format("ttf");
     font-weight: 800;
     font-style: normal;
 }

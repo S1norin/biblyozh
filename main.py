@@ -94,7 +94,7 @@ def library():
 def reader(book_id, current_page):
     db_sess = db_session.create_session()
     selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
-    return render_template('current_page.html', book=selected_book)
+    return render_template('reader.html', book=selected_book)
 
 
 def main():
