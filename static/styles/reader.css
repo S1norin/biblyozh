@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Mariupol';
     src: local('Mariupol-Medium'),
-    url('../fonts/mariupol-medium.ttf'), format("ttf");
+    url('../fonts/mariupol-medium.ttf') format("truetype");
     font-weight: 600;
     font-style: normal;
 }
@@ -9,7 +9,7 @@
 @font-face {
     font-family: 'Mariupol';
     src: local('Mariupol-Bold'),
-    url('../fonts/mariupol-bold.ttf'), format("ttf");
+    url('../fonts/mariupol-bold.ttf') format("truetype");
     font-weight: 800;
     font-style: normal;
 }
