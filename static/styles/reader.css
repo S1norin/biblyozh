@@ -25,6 +25,10 @@ header {
     margin-bottom: 25px;
 }
 
+button{
+    font-family: "Mariupol";
+}
+
 .header-container {
     min-width: 950px;
     display: flex;
@@ -65,6 +69,7 @@ header {
 }
 
 body {
+    font-family: "Mariupol";
     margin: 0;
     background-color: #F0D9BE;
 }
@@ -84,6 +89,7 @@ body {
 }
 
 .left-container {
+    font-family: "Mariupol"
     width: 170;
     margin-left: 10%;
     margin-right: 60px;
@@ -96,8 +102,7 @@ body {
 }
 
 .comment-button {
-
-    font-weight: bolder;
+    font-weight: bold;
     width: 150px;
     margin: 3% 0;
     padding: 8px 40px;
@@ -107,7 +112,7 @@ body {
 }
 
 .quotes-button {
-    font-weight: bolder;
+    font-weight: bold;
     width: 150px;
     margin: 3% 0;
     padding: 8px 40px;
@@ -137,6 +142,7 @@ body {
 }
 
 .content {
+    font-family: "Cambria";
     font-size: 22px;
 }
 
