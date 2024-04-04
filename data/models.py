@@ -45,5 +45,5 @@ class Book(SqlAlchemyBase):
     cover_path = sqlalchemy.Column(sqlalchemy.String)
     book_path = sqlalchemy.Column(sqlalchemy.String)
     progress = sqlalchemy.Column(sqlalchemy.Integer)
-    bookmarks = sqlalchemy.Column(sqlalchemy.String)
+    # bookmarks = sqlalchemy.Column(sqlalchemy.String)
     user = orm.relationship('User')
