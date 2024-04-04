@@ -23,6 +23,7 @@ class User(SqlAlchemyBase, UserMixin):
                               index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
+    last_book = sqlalchemy.Column(sqlalchemy.Integer)
 
 class Book(SqlAlchemyBase):
     def set_cover_path(self, id, original_filename):
@@ -45,5 +46,5 @@ class Book(SqlAlchemyBase):
     cover_path = sqlalchemy.Column(sqlalchemy.String)
     book_path = sqlalchemy.Column(sqlalchemy.String)
     progress = sqlalchemy.Column(sqlalchemy.Integer)
-    # bookmarks = sqlalchemy.Column(sqlalchemy.String)
+    bookmarks = sqlalchemy.Column(sqlalchemy.String)
     user = orm.relationship('User')

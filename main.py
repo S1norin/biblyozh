@@ -1,7 +1,7 @@
 import random
 
 from flask import Flask, render_template, redirect
-from flask_login import LoginManager, login_user, login_required, logout_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from data import db_session
 from data.forms import LoginForm, RegisterForm, FileForm
@@ -93,10 +93,16 @@ def library():
 
 
 @app.route('/reader/<int:book_id>/<int:current_page>')
+# @login_required
 def reader(book_id, current_page):
-    db_sess = db_session.create_session()
-    selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
-    return render_template('reader.html', book=selected_book)
+    if current_user.is_authenticated:
+        db_sess = db_session.create_session()
+        selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
+        db_sess.query(User).filter(User.id == current_user.id).update({"last_book": book_id})
+        db_sess.commit()
+        return render_template('reader.html', book=selected_book, user=current_user)
+    else:
+        return "No login"
 
 
 def main():
