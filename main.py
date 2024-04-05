@@ -28,7 +28,7 @@ def login():
         user = db_sess.query(User).filter(User.login == form.login.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=True)
-            return redirect("/")
+            return redirect("/library")
         form.login.data = ''
         return render_template('login.html',
                                message="Неправильный логин или пароль",
@@ -93,8 +93,7 @@ def library():
 
 
 @app.route('/reader/<int:book_id>/<int:current_page>')
-# @login_required
-def reader(book_id, current_page):
+def reader_selected(book_id, current_page):
     if current_user.is_authenticated:
         db_sess = db_session.create_session()
         selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
@@ -102,7 +101,18 @@ def reader(book_id, current_page):
         db_sess.commit()
         return render_template('reader.html', book=selected_book, user=current_user)
     else:
-        return "No login"
+        return redirect("/login")
+
+
+@app.route('/reader')
+def reader_last():
+    if current_user.is_authenticated:
+        db_sess = db_session.create_session()
+        current_user = db_sess.query(User).filter(User.id == current_user.id).first()
+        selected_book = db_sess.query(Book).filter(Book.id == current_user.last_book).first()
+        return redirect(f"/reader/{selected_book.id}/1")
+    else:
+        return redirect("/login")
 
 
 def main():
