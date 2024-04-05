@@ -14,6 +14,38 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Inglobal';
+    src: local('Inglobal-Regular'),
+    url('../../static/fonts/inglobal.ttf') format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inglobal';
+    src: local('Inglobal-Bold-Italic'),
+    url('../../static/fonts/inglobalbi.ttf') format("truetype");
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Inglobal';
+    src: local('Inglobal-Bold'),
+    url('../../static/fonts/inglobalb.ttf') format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+h1 {
+    margin: 0;
+}
+
+h2 {
+    margin: 0;
+}
+
 button {
     padding: 0;
     cursor: pointer;
@@ -42,7 +74,7 @@ main {
 header {
     background-color: #E8CDAE;
     height: 62px;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .header-container {
@@ -82,4 +114,131 @@ header {
 
 .logo {
     margin-left: 85px;
+}
+
+.title-container {
+    margin-bottom:25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-name-container {
+    display: flex;
+    gap: 6px;
+}
+
+.book-name {
+    font-size: 37px;
+    font-family: 'Inglobal';
+    font-weight: 800;
+}
+
+.author {
+    font-size: 18px;
+    font-family: 'Inglobal';
+    font-weight: 800;
+    font-style: italic;
+}
+
+.content-container {
+    display: flex;
+    gap: 70px;
+}
+
+.book-info {
+    width: 300px;
+    height: 100px;
+}
+
+.book {
+    height: 400px;
+    width: 300px;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border: none;
+}
+
+.cover-container {
+    width: 250px;
+    height: 380;
+    background-color: #E5C299;
+    border-radius: 25px;
+    padding-top: 20px;
+}
+
+.cover-img {
+    height: 310px;
+    width: 200px;
+}
+
+
+.book-info {
+    width: 100%;
+    height: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.remain {
+    height: 8px;
+    width: 100%;
+    background-color: #C5A581;
+    border-radius: 100px;
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.completed {
+    position: absolute;
+    height: 8px;
+    width: 35%;
+    background-color: #655050;
+    border-radius: 100px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.name {
+    font-family: 'Mariupol';
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.pages {
+    font-family: 'Mariupol';
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.percentage {
+    font-family: 'Mariupol';
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.notes-container {
+    width: 700px;
+    height: 100%;
+    background-color: #E8CDAE;
+    border-radius: 20px;
+}
+
+.bookmarks-container {
+    width: 225px;
+    height: 100%;
+    background-color: #E8CDAE;
+    border-radius: 20px;
 }
