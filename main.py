@@ -1,6 +1,6 @@
 import random
 
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, abort
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from data import db_session
@@ -97,20 +97,26 @@ def reader_selected(book_id, current_page):
     if current_user.is_authenticated:
         db_sess = db_session.create_session()
         selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
-        db_sess.query(User).filter(User.id == current_user.id).update({"last_book": book_id})
-        db_sess.commit()
-        return render_template('reader.html', book=selected_book, user=current_user)
+        if selected_book is not None:
+            db_sess.query(User).filter(User.id == current_user.id).update({"last_book": book_id})
+            db_sess.commit()
+            return render_template('reader.html', book=selected_book, user=current_user)
+        else:
+            abort(404)
     else:
         return redirect("/login")
 
 
 @app.route('/reader')
 def reader_last():
-    if current_user.is_authenticated:
+    if oleg.is_authenticated:
         db_sess = db_session.create_session()
-        current_user = db_sess.query(User).filter(User.id == current_user.id).first()
+        current_user = db_sess.query(User).filter(User.id == oleg.id).first()
         selected_book = db_sess.query(Book).filter(Book.id == current_user.last_book).first()
-        return redirect(f"/reader/{selected_book.id}/1")
+        if selected_book is not None:
+            return redirect(f"/reader/{selected_book.id}/1") # TODO: Доделать память для закладок, когда они будут реализованы
+        else:
+            abort(404)
     else:
         return redirect("/login")
 
@@ -121,4 +127,5 @@ def main():
 
 
 if __name__ == '__main__':
+    oleg = current_user
     main()
