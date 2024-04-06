@@ -62,22 +62,26 @@ def register():
 
 
 @app.route('/upload', methods=['GET', 'POST'])
+@login_required
 def upload():
-    form = FileForm()
-    if form.validate_on_submit():
+    if oleg.is_authenticated:
         db_sess = db_session.create_session()
-        book_id = random.randrange(100000)
-        while db_sess.query(Book).filter(Book.id == book_id).first():
+        selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
+        form = FileForm()
+        if form.validate_on_submit():
+            db_sess = db_session.create_session()
             book_id = random.randrange(100000)
-        book = Book(id=book_id, name=form.name.data, author=form.author.data, work_size=-1)
-        book.set_cover_path(book_id, form.cover.data.filename)
-        book.set_book_path(book_id, form.file.data.filename)
-        form.cover.data.save(f'{"data/" + book.cover_path}')
-        form.file.data.save(f'{"data/" + book.book_path}')
-        db_sess.add(book)
-        db_sess.commit()
-        return redirect('/')
-    return render_template('upload.html', form=form)
+            while db_sess.query(Book).filter(Book.id == book_id).first():
+                book_id = random.randrange(100000)
+            book = Book(id=book_id, name=form.name.data, author=form.author.data, work_size=-1, user_id=selected_user.id)
+            book.set_cover_path(book_id, form.cover.data.filename)
+            book.set_book_path(book_id, form.file.data.filename)
+            form.cover.data.save(f'{"data/" + book.cover_path}')
+            form.file.data.save(f'{"data/" + book.book_path}')
+            db_sess.add(book)
+            db_sess.commit()
+            return redirect('/')
+        return render_template('upload.html', form=form)
 
 
 @app.route('/logout')
@@ -94,13 +98,14 @@ def library():
 
 @app.route('/reader/<int:book_id>/<int:current_page>')
 def reader_selected(book_id, current_page):
-    if current_user.is_authenticated:
+    if oleg.is_authenticated:
         db_sess = db_session.create_session()
+        selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
         selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
         if selected_book is not None:
-            db_sess.query(User).filter(User.id == current_user.id).update({"last_book": book_id})
+            db_sess.query(User).filter(User.id == selected_user.id).update({"last_book": book_id})
             db_sess.commit()
-            return render_template('reader.html', book=selected_book, user=current_user)
+            return render_template('reader.html', book=selected_book, user=selected_user)
         else:
             abort(404)
     else:
@@ -111,8 +116,8 @@ def reader_selected(book_id, current_page):
 def reader_last():
     if oleg.is_authenticated:
         db_sess = db_session.create_session()
-        current_user = db_sess.query(User).filter(User.id == oleg.id).first()
-        selected_book = db_sess.query(Book).filter(Book.id == current_user.last_book).first()
+        selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
+        selected_book = db_sess.query(Book).filter(Book.id == selected_user.last_book).first()
         if selected_book is not None:
             return redirect(f"/reader/{selected_book.id}/1") # TODO: Доделать память для закладок, когда они будут реализованы
         else:
@@ -127,5 +132,5 @@ def main():
 
 
 if __name__ == '__main__':
-    oleg = current_user
+    oleg = current_user # TODO: Переименовать по-человечески переменную. Я никак не могу придумать нормальное название
     main()
