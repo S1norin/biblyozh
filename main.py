@@ -14,6 +14,14 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
+@app.route('/')
+def index():
+    if oleg.is_authenticated:
+        return redirect("/library")
+    else:
+        return redirect("login")
+
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
@@ -73,11 +81,12 @@ def upload():
             book_id = random.randrange(100000)
             while db_sess.query(Book).filter(Book.id == book_id).first():
                 book_id = random.randrange(100000)
-            book = Book(id=book_id, name=form.name.data, author=form.author.data, work_size=-1, user_id=selected_user.id)
+            book = Book(id=book_id, name=form.name.data, author=form.author.data, work_size=-1,
+                        user_id=selected_user.id)
             book.set_cover_path(book_id, form.cover.data.filename)
             book.set_book_path(book_id, form.file.data.filename)
-            form.cover.data.save(f'{"data/" + book.cover_path}')
-            form.file.data.save(f'{"data/" + book.book_path}')
+            form.cover.data.save(f'{"static/" + book.cover_path}')
+            form.file.data.save(f'{"static/" + book.book_path}')
             db_sess.add(book)
             db_sess.commit()
             return redirect('/')
@@ -93,7 +102,12 @@ def logout():
 
 @app.route('/library')
 def library():
-    return render_template('library.html')
+    if oleg.is_authenticated:
+        db_sess = db_session.create_session()
+        selected_books = db_sess.query(Book).filter(Book.user_id == oleg.id)
+        return render_template('library.html', books=selected_books)
+    else:
+        return redirect("/login")
 
 
 @app.route('/reader/<int:book_id>/<int:current_page>')
@@ -119,7 +133,8 @@ def reader_last():
         selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
         selected_book = db_sess.query(Book).filter(Book.id == selected_user.last_book).first()
         if selected_book is not None:
-            return redirect(f"/reader/{selected_book.id}/1") # TODO: Доделать память для закладок, когда они будут реализованы
+            return redirect(
+                f"/reader/{selected_book.id}/1")  # TODO: Доделать память для закладок, когда они будут реализованы (и поменять ссылки в reader.html, library.html)
         else:
             abort(404)
     else:
@@ -132,5 +147,5 @@ def main():
 
 
 if __name__ == '__main__':
-    oleg = current_user # TODO: Переименовать по-человечески переменную. Я никак не могу придумать нормальное название
+    oleg = current_user  # TODO: Переименовать по-человечески переменную. Я никак не могу придумать нормальное название
     main()

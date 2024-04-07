@@ -32,7 +32,7 @@ class Book(SqlAlchemyBase):
 
     def set_book_path(self, id, original_filename):
         format = secure_filename(original_filename).split(".")[-1]
-        self.book_path = f"books/{'.'.join([str(id), format])}"
+        self.book_path = f"../static/books/{'.'.join([str(id), format])}"
 
     __tablename__ = 'books'
 
