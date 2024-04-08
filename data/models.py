@@ -25,6 +25,7 @@ class User(SqlAlchemyBase, UserMixin):
 
     last_book = sqlalchemy.Column(sqlalchemy.Integer)
 
+
 class Book(SqlAlchemyBase):
     def set_cover_path(self, id, original_filename):
         format = secure_filename(original_filename).split(".")[-1]
@@ -39,7 +40,7 @@ class Book(SqlAlchemyBase):
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True)
     user_id = sqlalchemy.Column(sqlalchemy.Integer,
-                                    sqlalchemy.ForeignKey("users.id"))
+                                sqlalchemy.ForeignKey("users.id"))
     name = sqlalchemy.Column(sqlalchemy.String)
     work_size = sqlalchemy.Column(sqlalchemy.Integer)
     author = sqlalchemy.Column(sqlalchemy.String)
@@ -48,3 +49,25 @@ class Book(SqlAlchemyBase):
     progress = sqlalchemy.Column(sqlalchemy.Integer)
     bookmarks = sqlalchemy.Column(sqlalchemy.String)
     user = orm.relationship('User')
+
+
+class Note(SqlAlchemyBase):
+
+    __tablename__ = "notes"
+
+    # Сохраняет в строку два значения через `-`: `начало_курсора_выделения-конец_курсора_выделения` выбранной области
+    def define_selected_part(self, start, end):
+        self.selected_part = f"{start}-{end}"
+
+    id = sqlalchemy.Column(sqlalchemy.Integer,
+                           primary_key=True)
+    user_id = sqlalchemy.Column(sqlalchemy.Integer,
+                                sqlalchemy.ForeignKey("users.id"))
+    book_id = sqlalchemy.Column(sqlalchemy.Integer,
+                                sqlalchemy.ForeignKey("books.id"))
+    content = sqlalchemy.Column(sqlalchemy.String) # То, что выделил пользователь
+    note = sqlalchemy.Column(sqlalchemy.String) # То, что пользователь может написать, а может и не написать
+    page = sqlalchemy.Column(sqlalchemy.Integer)
+    selected_part = sqlalchemy.Column(sqlalchemy.String)
+    user = orm.relationship('User')
+    book = orm.relationship('Book')
