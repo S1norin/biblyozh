@@ -39,16 +39,20 @@
     </div>
 </header>
 
-<div class="button-row">
-    <button>Закладка</button>
-    <button>Пометка</button>
+<div class="buttons-container">
+    <button class="up-comment-button">Коментарии</button>
+    <div class="button-row">
+        <a><img class="comment-img" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
+        <a><img class="highlight-img" src="{{ url_for('static', filename='images/pencil.png') }}" alt=""></a>
+    </div>
+    <a href="/about/{{ book.id }}"> <div class="up-about-book-button">О книге</div> </a>
 </div>
+
 
 <div class="page-content">
     <div class="left-container">
         <div class="notes-title">Мои заметки</div>
         <button class="comment-button">Коментарии</button>
-        <br>
         <button class="quotes-button" onclick="play()">Смешной звук</button>
 
         <script>

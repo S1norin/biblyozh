@@ -17,6 +17,12 @@
 a {
     color: black;
     text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    padding: 0;
+    cursor: pointer;
 }
 
 header {
@@ -75,37 +81,45 @@ body {
 }
 
 .button-row {
-    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
     background-color: #F6CA97;
-    padding: 8px 0;
+    padding-top: 7px;
+    padding-bottom: 5px;
     border-radius: 20px;
     width: 240px;
     margin: 10px auto;
+    max-width: 150px;
+    min-width: 120px;
 }
 
 .page-content {
     display: flex;
-
+    justify-content: center;
+    gap: 30px;
 }
 
 .left-container {
-    font-family: "Mariupol"
-    width: 170;
-    margin-left: 10%;
-    margin-right: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Mariupol";
+    margin-left: 20px;
+    width: 170px;
 }
 
 .notes-title {
     text-align: center;
     font-size: 17px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .comment-button {
     font-weight: bold;
     width: 150px;
     margin: 3% 0;
-    padding: 8px 40px;
+    padding: 8px 0;
     border-radius: 10px;
     background-color: #F6CA97;
     border-style: none;
@@ -132,13 +146,13 @@ body {
     font-weight: bolder;
 }
 
-
-
 .text-container {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background-color: #E8CDAE;
     padding: 50px;
     border-radius: 25px;
+    min-width: 600px;
+    max-width: 850px;
 }
 
 .content {
@@ -146,38 +160,9 @@ body {
     font-size: 22px;
 }
 
-.progress-bar-overall {
-    display: float;
-}
-
-.empty-progress-bar{
-    background-color: white;
-    width: 100%;
-    height: 10px;
-}
-
-.completed-progress-bar{
-    background-color: black;
-    width: 100%;
-    height: 10px;
-}
-
-.progress-parent {
-    display: flex;
-}
-
-.progress-percent {
-    flex: 1;
-}
-
-.page-count {
-    flex: 10;
-}
-
 .right-container {
-    width: 170;
-    margin-right: 10%;
-    margin-left: 60px;
+    width: 170px;
+    margin-right: 20px;
 }
 
 .content-title {
@@ -201,3 +186,77 @@ body {
     background-color: #F6CA97;
     border-style: none;
 }
+
+.up-about-book-button {
+    display: none;
+}
+
+.up-comment-button {
+    display: none;
+}
+
+.comment-img {
+    width: 21px;
+    height: 21px;
+}
+
+.highlight-img {
+    width: 23px;
+    height: 21px;
+}
+
+@media (max-width: 1120px) {
+    .button-row {
+        margin: 0;
+        padding-bottom: 0;
+    }
+
+    .page-content {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .left-container {
+        display: none;
+    }
+
+    .right-container {
+        display: none;
+    }
+
+    .up-about-book-button {
+        font-size: 15px;
+        display: inherit;
+        text-align: center;
+        padding-top: 11px;
+        font-weight: bolder;
+        width: 150px;
+        border-radius: 20px;
+        background-color: #F6CA97;
+        border-style: none;
+        height: 25px;
+    }
+
+    .up-comment-button {
+        padding-top: 10px;
+        min-width: 150px;
+        display: flex;
+        justify-content: center;
+        font-size: 15px;
+        font-weight: bolder;
+        width: 150px;
+        border-radius: 20px;
+        background-color: #F6CA97;
+        border-style: none;
+        height: 36px;
+    }
+
+    .buttons-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        gap: 40px;
+    }
+}
+
+
