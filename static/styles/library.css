@@ -204,7 +204,6 @@ header {
 .completed {
     position: absolute;
     height: 8px;
-    width: 35%;
     background-color: #655050;
     border-radius: 100px;
 }
