@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{title}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/reader.css') }}">
+    <script>
+        $(document).ready(
+        function() {
+            $("#bookmark").click( function (){
+                $.get("https://httpbin.org/get", function(data, status) {
+                    $("#test").html(status);
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -44,6 +54,7 @@
     <div class="button-row">
         <a><img class="comment-img" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
         <a><img class="highlight-img" src="{{ url_for('static', filename='images/pencil.png') }}" alt=""></a>
+        <a><img id="bookmark" class="bookmark-img" src="{{ url_for('static', filename='images/bookmark_img.svg') }}" alt=""></a>
     </div>
     <a href="/about/{{ book.id }}"> <div class="up-about-book-button">О книге</div> </a>
 </div>
