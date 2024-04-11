@@ -68,6 +68,6 @@ class Note(SqlAlchemyBase):
     content = sqlalchemy.Column(sqlalchemy.String) # То, что выделил пользователь
     note = sqlalchemy.Column(sqlalchemy.String) # То, что пользователь может написать, а может и не написать
     page = sqlalchemy.Column(sqlalchemy.Integer)
-    selected_part = sqlalchemy.Column(sqlalchemy.String)
+    selected_part = sqlalchemy.Column(sqlalchemy.String) # Координаты выделенной части
     user = orm.relationship('User')
     book = orm.relationship('Book')

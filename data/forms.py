@@ -24,5 +24,5 @@ class FileForm(FlaskForm):
     cover = FileField('Обложка')
     file = FileField('Файл')
 
-class CommentForm(FlaskForm):
-    content = StringField('Содержание комментария')
+class NoteForm(FlaskForm):
+    note = StringField('Содержание комментария')

@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, abort
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from data import db_session
-from data.forms import LoginForm, RegisterForm, FileForm
+from data.forms import LoginForm, RegisterForm, FileForm, NoteForm
 from data.models import User, Book, Note
 
 app = Flask(__name__)
@@ -99,6 +99,19 @@ def upload():
             return redirect('/')
         return render_template('upload.html', form=form)
 
+# @app.route('/add_note')
+# def add_note():
+#     if oleg.is_authenticated:
+#         db_sess = db_session.create_session()
+#         selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
+#         form = NoteForm()
+#         if form.validate_on_submit():
+#             db_sess = db_session.create_session()
+#             note = Note(note=form.note)
+#             db_sess.add(note, user_id=oleg.id, book_id=selected_book)
+#             db_sess.commit()
+#             return redirect('/')
+#         return render_template('upload.html', form=form)
 
 @app.route('/library')
 def library():
