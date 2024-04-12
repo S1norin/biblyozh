@@ -1,6 +1,6 @@
 import random
 
-from flask import Flask, render_template, redirect, abort
+from flask import Flask, render_template, redirect, abort, request, make_response
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from data import db_session
@@ -99,6 +99,7 @@ def upload():
             return redirect('/')
         return render_template('upload.html', form=form)
 
+
 # @app.route('/add_note')
 # def add_note():
 #     if oleg.is_authenticated:
@@ -129,14 +130,37 @@ def reader_selected(book_id, current_page):
         db_sess = db_session.create_session()
         selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
         selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
+        if selected_book.user_id != selected_user.id:
+            return redirect('/library')  # Пользователь попытался открыть чужую книгу
         if selected_book is not None:
             db_sess.query(User).filter(User.id == selected_user.id).update({"last_book": book_id})
+            db_sess.query(Book).filter(Book.id == selected_book.id).update({"last_page": current_page})
             db_sess.commit()
-            return render_template('reader.html', book=selected_book, user=selected_user)
+            return render_template('reader.html', book=selected_book, user=selected_user, book_id=book_id,
+                                   page=current_page)
         else:
             abort(404)
     else:
         return redirect("/login")
+
+
+@app.route('/reader/<int:book_id>/make_bookmark', methods=['POST'])
+def make_bookmark(book_id):
+    db_sess = db_session.create_session()
+    selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
+    current_page = selected_book.last_page
+    bookmarks = selected_book.bookmarks
+    if not bookmarks:
+        new_bookmarks = f'{current_page};'
+    else:
+        bookmarks_list = bookmarks.split(';')
+        if current_page not in bookmarks_list:
+            new_bookmarks = bookmarks + f'{current_page};'
+        else:
+            new_bookmarks = bookmarks
+    db_sess.query(Book).filter(Book.id == selected_book.id).update({"bookmarks": new_bookmarks})
+    db_sess.commit()
+    return make_response('you are not supposed to see this, get the hell out of here')
 
 
 @app.route('/reader')
@@ -153,7 +177,8 @@ def reader_last():
     else:
         return redirect("/login")
 
-@app.route('/about/<int:book_id>') # TODO: Сделать форму создания заметки
+
+@app.route('/about/<int:book_id>')  # TODO: Сделать форму создания заметки
 def about(book_id):
     if oleg.is_authenticated:
         db_sess = db_session.create_session()

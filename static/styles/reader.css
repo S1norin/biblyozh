@@ -23,6 +23,8 @@ a {
 button {
     padding: 0;
     cursor: pointer;
+    background: none;
+    border: none;
 }
 
 header {

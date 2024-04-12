@@ -3,8 +3,34 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/reader.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            $("#btn").click(
+                function(){
+                    sendAjaxForm('result_form', 'bookmark_form', 'make_bookmark');
+                    return false;
+                }
+            );
+        });
+
+        function sendAjaxForm(result_form, ajax_form, url) {
+            $.ajax({
+                url:     url,
+                type:     "POST",
+                dataType: "html",
+                data: $("#"+ajax_form).serialize(),
+                success: function(response) {
+
+                },
+                error: function(response) {
+
+                }
+             });
+        }
+    </script>
 </head>
 
 <body>
@@ -44,8 +70,14 @@
     <div class="button-row">
         <a><img class="comment-img" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
         <a><img class="highlight-img" src="{{ url_for('static', filename='images/pencil.png') }}" alt=""></a>
-        <a><img id="bookmark" class="bookmark-img" src="{{ url_for('static', filename='images/bookmark_img.svg') }}"
-                alt=""></a>
+        <form id="bookmark_form">
+            <input style="display: none" type="text" id="book_id" value="{{ book_id }}">
+            <input style="display: none" type="text" id="page" value="{{ page }}">
+            <button id="btn"><img id="bookmark" class="bookmark-img"
+                              src="{{ url_for('static', filename='images/bookmark_img.svg') }}"
+                              alt=""></button>
+        </form>
+
     </div>
     <a href="/about/{{ book.id }}">
         <div class="up-about-book-button">О книге</div>
@@ -92,7 +124,7 @@
         <script>
             function play() {
                 var audio = new Audio(
-    '{{ url_for('static', filename='metal-pipe-falling-sound-effect.mp3') }}');
+                    '{{ url_for('static', filename='metal-pipe-falling-sound-effect.mp3') }}');
                 audio.play();
             }
         </script>

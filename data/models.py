@@ -48,6 +48,7 @@ class Book(SqlAlchemyBase):
     book_path = sqlalchemy.Column(sqlalchemy.String)
     progress = sqlalchemy.Column(sqlalchemy.Integer)
     bookmarks = sqlalchemy.Column(sqlalchemy.String)
+    last_page = sqlalchemy.Column(sqlalchemy.String)
     user = orm.relationship('User')
 
 
