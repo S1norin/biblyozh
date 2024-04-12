@@ -10,23 +10,28 @@
         $( document ).ready(function() {
             $("#btn").click(
                 function(){
-                    sendAjaxForm('result_form', 'bookmark_form', 'make_bookmark');
+                    sendAjaxForm('bookmark_form', 'make_bookmark');
                     return false;
                 }
             );
         });
 
-        function sendAjaxForm(result_form, ajax_form, url) {
+        function sendAjaxForm(ajax_form, url) {
+            const data = {
+              book_id: $("#book_id").val(),
+              page: $("#page").val(),
+            };
+
             $.ajax({
                 url:     url,
                 type:     "POST",
                 dataType: "html",
-                data: $("#"+ajax_form).serialize(),
+                data: data,
                 success: function(response) {
-
+                    console.log("Отправлено");
                 },
                 error: function(response) {
-
+                    console.log("Ошибка");
                 }
              });
         }

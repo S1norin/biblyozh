@@ -143,7 +143,7 @@ def reader_selected(book_id, current_page):
                 db_sess.commit()
             return render_template('reader.html', book=selected_book, user=selected_user, book_id=book_id,
                                    page=current_page, form=note_form)
-            
+
 
 
         else:
@@ -154,18 +154,20 @@ def reader_selected(book_id, current_page):
 
 @app.route('/reader/<int:book_id>/make_bookmark', methods=['POST'])
 def make_bookmark(book_id):
+    data = request.form.items()
     db_sess = db_session.create_session()
     selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
-    current_page = selected_book.last_page
+    current_page = [*data][1][1]
     bookmarks = selected_book.bookmarks
     if not bookmarks:
         new_bookmarks = f'{current_page};'
     else:
         bookmarks_list = bookmarks.split(';')
-        if current_page not in bookmarks_list:
+        if str(current_page) not in bookmarks_list:
             new_bookmarks = bookmarks + f'{current_page};'
         else:
-            new_bookmarks = bookmarks
+            bookmarks_list.remove(str(current_page))
+            new_bookmarks = ';'.join(bookmarks_list)
     db_sess.query(Book).filter(Book.id == selected_book.id).update({"bookmarks": new_bookmarks})
     db_sess.commit()
     return make_response('you are not supposed to see this, get the hell out of here')
@@ -186,15 +188,26 @@ def reader_last():
         return redirect("/login")
 
 
-@app.route('/about/<int:book_id>')  # TODO: Сделать форму создания заметки
+@app.route('/about/<int:book_id>')
 def about(book_id):
     if oleg.is_authenticated:
         db_sess = db_session.create_session()
         selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
         selected_book = db_sess.query(Book).filter(Book.id == book_id and Book.user_id == oleg.id).first()
+        if selected_user.id != selected_book.user_id:
+            return redirect('/library')
         selected_notes = db_sess.query(Note).filter(Note.book_id == book_id and Note.user_id == oleg.id)
+        bookmarks = selected_book.bookmarks
+        if bookmarks:
+            bookmarks = list(sorted(list(map(int, bookmarks.split(';')[:-1]))))
+            last_bookmark = bookmarks[-1]
+            bookmarks.pop(-1)
+        else:
+            bookmarks = []
+            last_bookmark = None
         if selected_book is not None:
-            return render_template('info.html', book=selected_book, note=selected_notes)
+            return render_template('info.html', book=selected_book, note=selected_notes, bookmarks=bookmarks,
+                                   last_bookmark=last_bookmark)
         else:
             abort(404)
     else:

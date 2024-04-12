@@ -121,11 +121,19 @@
             </div>
 
             <div class="bookmarks-container">
-                <h2 class="bookmarks-title">Закладки</h2>
-                <div class="last-bookmark">Стр. 138</div>
-                <ul class="bookmarks-list">
-                    <li class="bookmark"></li>
-                </ul>
+                <div class="bookmarks-content">
+                    <h2 class="bookmarks-title">Закладки</h2>
+                    {% if last_bookmark %}
+                    <a href="/reader/{{ book.id }}/{{ last_bookmark }}"><div class="last-bookmark">Стр. {{ last_bookmark }}</div></a>
+                    <ul class="bookmarks-list">
+                        {% for bookmark in bookmarks %}
+                            <li class="bookmark"><a href="/reader/{{ book.id }}/{{ bookmark }}">Cтр. {{ bookmark }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <h2>Закладок нет, убирайтесь</h2>
+                    {% endif %}
+                </div>
             </div>
         </div>
 

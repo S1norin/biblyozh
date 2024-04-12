@@ -232,9 +232,12 @@ header {
 }
 
 .bookmarks-container {
+    padding-top: 17px;
+    display: flex;
+    justify-content: center;
     width: 295px;
     height: 100%;
-    background-color: #E8CDAE;
+    background-color: #E5C299;
     border-radius: 20px;
 }
 
@@ -304,4 +307,47 @@ header {
     padding-right: 30px;
     margin-left: 15px;
 
+}
+
+.bookmarks-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.bookmarks-title {
+    font-size: 25px;
+    font-family: 'Mariupol';
+}
+
+.last-bookmark {
+    padding-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: 'Inglobal';
+    font-style: italic;
+    width: 90px;
+    height: 30px;
+    background-color: #F6CA97;
+    border-radius: 30px;
+}
+
+.bookmarks-list {
+    padding: 0;
+    margin-top: 5px;
+    max-width: 600px;
+    flex-wrap: wrap;
+    font-size: 17px;
+    font-family: 'Mariupol';
+    font-weight: bold;
+    display: flex;
+}
+
+.bookmark {
+    min-width: 100px;
+    margin-left: 45px;
+    margin-bottom: 10px;
 }
