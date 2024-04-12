@@ -4,17 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{title}}</title>
+    <script src="{{ url_for('static', filename='scripts/reader.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/reader.css') }}">
-    <script>
-        $(document).ready(
-        function() {
-            $("#bookmark").click( function (){
-                $.get("https://httpbin.org/get", function(data, status) {
-                    $("#test").html(status);
-                });
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -54,9 +45,42 @@
     <div class="button-row">
         <a><img class="comment-img" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
         <a><img class="highlight-img" src="{{ url_for('static', filename='images/pencil.png') }}" alt=""></a>
-        <a><img id="bookmark" class="bookmark-img" src="{{ url_for('static', filename='images/bookmark_img.svg') }}" alt=""></a>
+        <a><img id="bookmark" class="bookmark-img" src="{{ url_for('static', filename='images/bookmark_img.svg') }}"
+                alt=""></a>
     </div>
-    <a href="/about/{{ book.id }}"> <div class="up-about-book-button">О книге</div> </a>
+    <a href="/about/{{ book.id }}">
+        <div class="up-about-book-button">О книге</div>
+    </a>
+
+    <div class="container">
+        <button class="btn" data-target="#modal1">Open Modal</button>
+        <button class="btn" data-target="#modal2">Open Modal 2</button>
+        <br/>
+    </div>
+
+    <div class="modal" id="modal1">
+        <div class="header">
+            <div class="title">First Modal</div>
+            <button class="btn close-modal">&times;</button>
+        </div>
+        <div class="body">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere ea
+            officia consectetur. Laborum, dolor? Assumenda quo corrupti eveniet
+            velit fugit fugiat odit, dolorum labore obcaecati quia. Commodi
+            assumenda sed maxime!
+        </div>
+    </div>
+    <div class="modal" id="modal2">
+        <div class="header">
+            <div class="title">Second Modal</div>
+            <button class="btn close-modal">&times;</button>
+        </div>
+        <div class="body">
+            Sample text is goregoues как же похорошел лорум ипсум при Артемоне Собяноиде!
+        </div>
+    </div>
+
+    <div id="overlay"></div>
 </div>
 
 
@@ -112,7 +136,9 @@
 
 
     <div class="right-container">
-        <a href="/about/{{ book.id }}"> <div class="about-book-button">О книге</div> </a>
+        <a href="/about/{{ book.id }}">
+            <div class="about-book-button">О книге</div>
+        </a>
     </div>
 </div>
 </body>
