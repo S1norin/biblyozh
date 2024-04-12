@@ -124,10 +124,11 @@ def library():
         return redirect("/login")
 
 
-@app.route('/reader/<int:book_id>/<int:current_page>')
+@app.route('/reader/<int:book_id>/<int:current_page>', methods=["GET", "POST"])
 def reader_selected(book_id, current_page):
     if oleg.is_authenticated:
         db_sess = db_session.create_session()
+        note_form = NoteForm()
         selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
         selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
         if selected_book.user_id != selected_user.id:
@@ -136,8 +137,15 @@ def reader_selected(book_id, current_page):
             db_sess.query(User).filter(User.id == selected_user.id).update({"last_book": book_id})
             db_sess.query(Book).filter(Book.id == selected_book.id).update({"last_page": current_page})
             db_sess.commit()
+            if note_form.validate_on_submit():
+                note = Note(note=note_form.note.data, book_id=selected_book.id, user_id=selected_user.id)
+                db_sess.add(note)
+                db_sess.commit()
             return render_template('reader.html', book=selected_book, user=selected_user, book_id=book_id,
-                                   page=current_page)
+                                   page=current_page, form=note_form)
+            
+
+
         else:
             abort(404)
     else:

@@ -85,32 +85,31 @@
 
     <div class="container">
         <button class="btn" data-target="#modal1">Open Modal</button>
-        <button class="btn" data-target="#modal2">Open Modal 2</button>
-        <br/>
     </div>
 
     <div class="modal" id="modal1">
-        <div class="header">
-            <div class="title">First Modal</div>
-            <button class="btn close-modal">&times;</button>
-        </div>
-        <div class="body">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere ea
-            officia consectetur. Laborum, dolor? Assumenda quo corrupti eveniet
-            velit fugit fugiat odit, dolorum labore obcaecati quia. Commodi
-            assumenda sed maxime!
-        </div>
-    </div>
-    <div class="modal" id="modal2">
-        <div class="header">
-            <div class="title">Second Modal</div>
-            <button class="btn close-modal">&times;</button>
-        </div>
-        <div class="body">
-            Sample text is goregoues как же похорошел лорум ипсум при Артемоне Собяноиде!
-        </div>
-    </div>
+        <div class="materialContainer">
+    <div class="box">
+        <form method="post">
+            <div class="title">Добавить заметку</div>
 
+            <div class="input">
+                <label for="note">Комментарий (опционально)</label>
+                {{ form.hidden_tag() }}
+                {{ form.note(class="form-control", id="note", type="text") }}
+                <span class="spin"></span>
+            </div>
+
+
+            <div class="button login">
+                <button><span>Добавить</span> <i class="fa fa-check"></i></button>
+            </div>
+
+        </form>
+    </div>
+        </div>
+    </div>
+    
     <div id="overlay"></div>
 </div>
 
