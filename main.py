@@ -131,6 +131,10 @@ def reader_selected(book_id, current_page):
         note_form = NoteForm()
         selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
         selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
+        if str(current_page) in selected_book.bookmarks.split(';'):
+            have_bookmark = True
+        else:
+            have_bookmark = False
         if selected_book.user_id != selected_user.id:
             return redirect('/library')  # Пользователь попытался открыть чужую книгу
         if selected_book is not None:
@@ -142,7 +146,7 @@ def reader_selected(book_id, current_page):
                 db_sess.add(note)
                 db_sess.commit()
             return render_template('reader.html', book=selected_book, user=selected_user, book_id=book_id,
-                                   page=current_page, form=note_form)
+                                   page=current_page, form=note_form, have_bookmark=have_bookmark)
 
 
 

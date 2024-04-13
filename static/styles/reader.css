@@ -267,6 +267,11 @@ body {
     height: 21px;
 }
 
+.bookmark-img-filled {
+    width: 21px;
+    height: 21px;
+}
+
 .container {
   width: 992px;
   margin: 0 auto;
@@ -708,7 +713,6 @@ body {
     font-family: 'Roboto', sans-serif;
  }
 
- 
  .materialContainer {
     width: 100%;
     max-width: 460px;
