@@ -9,60 +9,57 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
-            <a class="logo" href="/">
-                <img src="../static/images/logo.svg" alt="logo img" class="logo-img">
-            </a>
+<header>
+    <div class="header-container">
+        <a class="logo" href="/">
+            <img src="../static/images/logo.svg" alt="logo img" class="logo-img">
+        </a>
 
-            <nav class="header-nav">
-                
-                <ul class="header-list">
-                    <li class="header-list-item">
-                        <a href="/reader" class="header-link">
-                            Читать
-                        </a>
-                    </li>
+        <nav class="header-nav">
 
-                    <li class="header-list-item">
-                        <a href="/library" class="header-link">
-                            Библиотека
-                        </a>
-                    </li>
+            <ul class="header-list">
+                <li class="header-list-item">
+                    <a href="/reader" class="header-link">
+                        Читать
+                    </a>
+                </li>
 
-                    <li class="header-list-item">
-                        <a href="/logout" class="header-link login-link">
-                            Выйти
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+                <li class="header-list-item">
+                    <a href="/library" class="header-link">
+                        Библиотека
+                    </a>
+                </li>
+
+                <li class="header-list-item">
+                    <a href="/logout" class="header-link login-link">
+                        Выйти
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
 
-    <main>
-        <!-- <h1 class="library-title">Библиотека</h1> -->
-
-        <div class="container">
-
-            <div class="book-names-container">
-                <div class="names-list">
-                    <button class="book-name">Рассказы</button>
-                    <button class="book-name">Повести</button>
-                    <button class="book-name">Романы</button>
-                </div>
-
-                    
-                <a href="/upload"><button class="add-book"><img src="../static/images/plus.png" alt=""><span class="add-book-label">Добавить книгу</span></button></a>
-
+<main>
+    <div class="container">
+        <div class="book-names-container">
+            <div class="names-list">
+                {% for book in book_names %}
+                    <a href="/reader/{{ book[1] }}" class="book-name">{{ book[0] }}</a>
+                {% endfor %}
             </div>
 
-            <div class="books-container">
-                <div class="books-elems-container">
-                    {% for book in books %}
-                    
-                    <a href="/reader/{{ book.id }}/1">
+            <a href="/upload">
+                <button class="add-book"><img src="../static/images/plus.png" alt=""><span class="add-book-label">Добавить книгу</span>
+                </button>
+            </a>
+        </div>
+
+        <div class="books-container">
+            <div class="books-elems-container">
+                {% for book in books %}
+                    <a href="/reader/{{ book.id }}">
                         <button class="book">
                             <div class="cover-container">
                                 <img class="cover-img" src="../static/{{ book.cover_path }}" alt="">
@@ -80,168 +77,168 @@
                             </div>
                         </button>
                     </a>
-                   
-                    {% endfor %}
-<!--                    -->
-<!--                    <button class="book">-->
-<!--                        <div class="cover-container">-->
-<!--                            <img src="#" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="book-info">-->
-<!--                            <div class="progress-bar">-->
-<!--                                <div class="completed"></div>-->
-<!--                                <div class="remain"></div>-->
-<!--                            </div>-->
-<!--                            <div class="info">-->
-<!--                                <span class="pages">2534/6643</span>-->
-<!--                                <span class="name">Название книги</span>-->
-<!--                                <span class="percentage">34.68%</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </button>-->
 
-<!--                    <button class="book">-->
-<!--                        <div class="cover-container">-->
-<!--                            <img src="#" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="book-info">-->
-<!--                            <div class="progress-bar">-->
-<!--                                <div class="completed"></div>-->
-<!--                                <div class="remain"></div>-->
-<!--                            </div>-->
-<!--                            <div class="info">-->
-<!--                                <span class="pages">2534/6643</span>-->
-<!--                                <span class="name">Название книги</span>-->
-<!--                                <span class="percentage">34.68%</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </button>-->
+                {% endfor %}
+                <!--                    -->
+                <!--                    <button class="book">-->
+                <!--                        <div class="cover-container">-->
+                <!--                            <img src="#" alt="">-->
+                <!--                        </div>-->
+                <!--                        <div class="book-info">-->
+                <!--                            <div class="progress-bar">-->
+                <!--                                <div class="completed"></div>-->
+                <!--                                <div class="remain"></div>-->
+                <!--                            </div>-->
+                <!--                            <div class="info">-->
+                <!--                                <span class="pages">2534/6643</span>-->
+                <!--                                <span class="name">Название книги</span>-->
+                <!--                                <span class="percentage">34.68%</span>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </button>-->
 
-<!--                    <button class="book">-->
-<!--                        <div class="cover-container">-->
-<!--                            <img src="#" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="book-info">-->
-<!--                            <div class="progress-bar">-->
-<!--                                <div class="completed"></div>-->
-<!--                                <div class="remain"></div>-->
-<!--                            </div>-->
-<!--                            <div class="info">-->
-<!--                                <span class="pages">2534/6643</span>-->
-<!--                                <span class="name">Название книги</span>-->
-<!--                                <span class="percentage">34.68%</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </button>-->
+                <!--                    <button class="book">-->
+                <!--                        <div class="cover-container">-->
+                <!--                            <img src="#" alt="">-->
+                <!--                        </div>-->
+                <!--                        <div class="book-info">-->
+                <!--                            <div class="progress-bar">-->
+                <!--                                <div class="completed"></div>-->
+                <!--                                <div class="remain"></div>-->
+                <!--                            </div>-->
+                <!--                            <div class="info">-->
+                <!--                                <span class="pages">2534/6643</span>-->
+                <!--                                <span class="name">Название книги</span>-->
+                <!--                                <span class="percentage">34.68%</span>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </button>-->
 
-<!--                    <button class="book">-->
-<!--                        <div class="cover-container">-->
-<!--                            <img src="#" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="book-info">-->
-<!--                            <div class="progress-bar">-->
-<!--                                <div class="completed"></div>-->
-<!--                                <div class="remain"></div>-->
-<!--                            </div>-->
-<!--                            <div class="info">-->
-<!--                                <span class="pages">2534/6643</span>-->
-<!--                                <span class="name">Название книги</span>-->
-<!--                                <span class="percentage">34.68%</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </button>-->
+                <!--                    <button class="book">-->
+                <!--                        <div class="cover-container">-->
+                <!--                            <img src="#" alt="">-->
+                <!--                        </div>-->
+                <!--                        <div class="book-info">-->
+                <!--                            <div class="progress-bar">-->
+                <!--                                <div class="completed"></div>-->
+                <!--                                <div class="remain"></div>-->
+                <!--                            </div>-->
+                <!--                            <div class="info">-->
+                <!--                                <span class="pages">2534/6643</span>-->
+                <!--                                <span class="name">Название книги</span>-->
+                <!--                                <span class="percentage">34.68%</span>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </button>-->
 
-<!--                    <button class="book">-->
-<!--                        <div class="cover-container">-->
-<!--                            <img src="#" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="book-info">-->
-<!--                            <div class="progress-bar">-->
-<!--                                <div class="completed"></div>-->
-<!--                                <div class="remain"></div>-->
-<!--                            </div>-->
-<!--                            <div class="info">-->
-<!--                                <span class="pages">2534/6643</span>-->
-<!--                                <span class="name">Название книги</span>-->
-<!--                                <span class="percentage">34.68%</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </button>-->
+                <!--                    <button class="book">-->
+                <!--                        <div class="cover-container">-->
+                <!--                            <img src="#" alt="">-->
+                <!--                        </div>-->
+                <!--                        <div class="book-info">-->
+                <!--                            <div class="progress-bar">-->
+                <!--                                <div class="completed"></div>-->
+                <!--                                <div class="remain"></div>-->
+                <!--                            </div>-->
+                <!--                            <div class="info">-->
+                <!--                                <span class="pages">2534/6643</span>-->
+                <!--                                <span class="name">Название книги</span>-->
+                <!--                                <span class="percentage">34.68%</span>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </button>-->
 
-<!--                    <button class="book">-->
-<!--                        <div class="cover-container">-->
-<!--                            <img src="#" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="book-info">-->
-<!--                            <div class="progress-bar">-->
-<!--                                <div class="completed"></div>-->
-<!--                                <div class="remain"></div>-->
-<!--                            </div>-->
-<!--                            <div class="info">-->
-<!--                                <span class="pages">2534/6643</span>-->
-<!--                                <span class="name">Название книги</span>-->
-<!--                                <span class="percentage">34.68%</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </button>-->
+                <!--                    <button class="book">-->
+                <!--                        <div class="cover-container">-->
+                <!--                            <img src="#" alt="">-->
+                <!--                        </div>-->
+                <!--                        <div class="book-info">-->
+                <!--                            <div class="progress-bar">-->
+                <!--                                <div class="completed"></div>-->
+                <!--                                <div class="remain"></div>-->
+                <!--                            </div>-->
+                <!--                            <div class="info">-->
+                <!--                                <span class="pages">2534/6643</span>-->
+                <!--                                <span class="name">Название книги</span>-->
+                <!--                                <span class="percentage">34.68%</span>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </button>-->
 
-<!--                    <button class="book">-->
-<!--                        <div class="cover-container">-->
-<!--                            <img src="#" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="book-info">-->
-<!--                            <div class="progress-bar">-->
-<!--                                <div class="completed"></div>-->
-<!--                                <div class="remain"></div>-->
-<!--                            </div>-->
-<!--                            <div class="info">-->
-<!--                                <span class="pages">2534/6643</span>-->
-<!--                                <span class="name">Название книги</span>-->
-<!--                                <span class="percentage">34.68%</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </button>-->
+                <!--                    <button class="book">-->
+                <!--                        <div class="cover-container">-->
+                <!--                            <img src="#" alt="">-->
+                <!--                        </div>-->
+                <!--                        <div class="book-info">-->
+                <!--                            <div class="progress-bar">-->
+                <!--                                <div class="completed"></div>-->
+                <!--                                <div class="remain"></div>-->
+                <!--                            </div>-->
+                <!--                            <div class="info">-->
+                <!--                                <span class="pages">2534/6643</span>-->
+                <!--                                <span class="name">Название книги</span>-->
+                <!--                                <span class="percentage">34.68%</span>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </button>-->
 
-<!--                    <button class="book">-->
-<!--                        <div class="cover-container">-->
-<!--                            <img src="#" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="book-info">-->
-<!--                            <div class="progress-bar">-->
-<!--                                <div class="completed"></div>-->
-<!--                                <div class="remain"></div>-->
-<!--                            </div>-->
-<!--                            <div class="info">-->
-<!--                                <span class="pages">2534/6643</span>-->
-<!--                                <span class="name">Название книги</span>-->
-<!--                                <span class="percentage">34.68%</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </button>-->
+                <!--                    <button class="book">-->
+                <!--                        <div class="cover-container">-->
+                <!--                            <img src="#" alt="">-->
+                <!--                        </div>-->
+                <!--                        <div class="book-info">-->
+                <!--                            <div class="progress-bar">-->
+                <!--                                <div class="completed"></div>-->
+                <!--                                <div class="remain"></div>-->
+                <!--                            </div>-->
+                <!--                            <div class="info">-->
+                <!--                                <span class="pages">2534/6643</span>-->
+                <!--                                <span class="name">Название книги</span>-->
+                <!--                                <span class="percentage">34.68%</span>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </button>-->
 
-<!--                    <button class="book">-->
-<!--                        <div class="cover-container">-->
-<!--                            <img src="#" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="book-info">-->
-<!--                            <div class="progress-bar">-->
-<!--                                <div class="completed"></div>-->
-<!--                                <div class="remain"></div>-->
-<!--                            </div>-->
-<!--                            <div class="info">-->
-<!--                                <span class="pages">2534/6643</span>-->
-<!--                                <span class="name">Название книги</span>-->
-<!--                                <span class="percentage">34.68%</span>-->
-                            </div>
-                        </div>
-                    </button>
-                </div>
+                <!--                    <button class="book">-->
+                <!--                        <div class="cover-container">-->
+                <!--                            <img src="#" alt="">-->
+                <!--                        </div>-->
+                <!--                        <div class="book-info">-->
+                <!--                            <div class="progress-bar">-->
+                <!--                                <div class="completed"></div>-->
+                <!--                                <div class="remain"></div>-->
+                <!--                            </div>-->
+                <!--                            <div class="info">-->
+                <!--                                <span class="pages">2534/6643</span>-->
+                <!--                                <span class="name">Название книги</span>-->
+                <!--                                <span class="percentage">34.68%</span>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </button>-->
+
+                <!--                    <button class="book">-->
+                <!--                        <div class="cover-container">-->
+                <!--                            <img src="#" alt="">-->
+                <!--                        </div>-->
+                <!--                        <div class="book-info">-->
+                <!--                            <div class="progress-bar">-->
+                <!--                                <div class="completed"></div>-->
+                <!--                                <div class="remain"></div>-->
+                <!--                            </div>-->
+                <!--                            <div class="info">-->
+                <!--                                <span class="pages">2534/6643</span>-->
+                <!--                                <span class="name">Название книги</span>-->
+                <!--                                <span class="percentage">34.68%</span>-->
             </div>
+        </div>
+        </button>
+    </div>
+    </div>
 
-        </div> 
+    </div>
 
-    </main>
-      
+</main>
+
 </body>
 
 

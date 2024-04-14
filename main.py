@@ -117,9 +117,15 @@ def upload():
 @app.route('/library')
 def library():
     if oleg.is_authenticated:
+        book_names = []
         db_sess = db_session.create_session()
         selected_books = db_sess.query(Book).filter(Book.user_id == oleg.id)
-        return render_template('library.html', books=selected_books)
+        for book in selected_books:
+            name = book.name
+            if len(name) > 27:
+                name = name[:25] + '...'
+            book_names.append((name, book.id))
+        return render_template('library.html', books=selected_books, book_names=book_names)
     else:
         return redirect("/login")
 
@@ -185,7 +191,21 @@ def reader_last():
         selected_book = db_sess.query(Book).filter(Book.id == selected_user.last_book).first()
         if selected_book is not None:
             return redirect(
-                f"/reader/{selected_book.id}/1")  # TODO: Доделать память для закладок, когда они будут реализованы (и поменять ссылки в reader.html, library.html)
+                f"/reader/{selected_book.id}/{selected_book.last_page}")
+        else:
+            abort(404)
+    else:
+        return redirect("/login")
+
+
+@app.route('/reader/<int:book_id>')
+def reader_last_page(book_id):
+    if oleg.is_authenticated:
+        db_sess = db_session.create_session()
+        selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
+        if selected_book is not None:
+            return redirect(
+                f"/reader/{book_id}/{selected_book.last_page}")
         else:
             abort(404)
     else:
