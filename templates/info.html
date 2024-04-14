@@ -9,135 +9,149 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
-            <a class="logo" href="/main">
-                <img src="../../static/images/logo.svg" alt="logo img" class="logo-img">
-            </a>
+<header>
+    <div class="header-container">
+        <a class="logo" href="/main">
+            <img src="../../static/images/logo.svg" alt="logo img" class="logo-img">
+        </a>
 
-            <nav class="header-nav">
-                
-                <ul class="header-list">
-                    <li class="header-list-item">
-                        <a href="/reader" class="header-link">
-                            Читать 
-                        </a>
-                    </li>
+        <nav class="header-nav">
 
-                    <li class="header-list-item">
-                        <a href="/library" class="header-link">
-                            Библиотека
-                        </a>
-                    </li>
+            <ul class="header-list">
+                <li class="header-list-item">
+                    <a href="/reader" class="header-link">
+                        Читать
+                    </a>
+                </li>
 
-                    <li class="header-list-item">
-                        <a href="/logout" class="header-link login-link">
-                            Выйти
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                <li class="header-list-item">
+                    <a href="/library" class="header-link">
+                        Библиотека
+                    </a>
+                </li>
+
+                <li class="header-list-item">
+                    <a href="/logout" class="header-link login-link">
+                        Выйти
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+    </div>
+
+
+    <div id="overlay"></div>
+    <div class="title-container">
+        <div class="book-name-container">
+            <h1 class="book-name">{{ book.name }}</h1>
+            <button class="change-name-btn"><img src="" alt=""></button>
         </div>
-    </header>
+        <h2 class="author">{{ book.author }}</h2>
+    </div>
 
-    <main>
-        <div class="title-container">
-            <div class="book-name-container">
-                <h1 class="book-name">{{ book.name }}</h1>
-                <button class="change-name-btn"><img src="" alt=""></button>
-            </div>
-            <h2 class="author">{{ book.author }}</h2>
-        </div>
-
-        <div class="content-container">
-            <div class="book-info-container">
-                <div class="cover-and-progress">
-                    <div class="book">
-                        <div class="cover-container">
-                            <img class="cover-img" src="../static/{{ book.cover_path }}" alt="">
+    <div class="content-container">
+        <div class="book-info-container">
+            <div class="cover-and-progress">
+                <div class="book">
+                    <div class="cover-container">
+                        <img class="cover-img" src="../static/{{ book.cover_path }}" alt="">
+                    </div>
+                    <div class="book-info">
+                        <div class="progress-bar">
+                            <div class="completed"></div>
+                            <div class="remain"></div>
                         </div>
-                        <div class="book-info">
-                            <div class="progress-bar">
-                                <div class="completed"></div>
-                                <div class="remain"></div>
-                            </div>
-                            <div class="info">
-                                <span class="pages">2534/{{ book.work_size}}</span>
-                                <span class="name">{{ book.name }}</span>
-                                <span class="percentage">34.68%</span>
-                            </div>
+                        <div class="info">
+                            <span class="pages">2534/{{ book.work_size}}</span>
+                            <span class="name">{{ book.name }}</span>
+                            <span class="percentage">34.68%</span>/
                         </div>
                     </div>
                 </div>
-                <div class="buttons"></div>
             </div>
+            <div class="buttons"></div>
+        </div>
 
-            <div class="notes-container">
-                <h2 class="notes-title">Заметки</h2>
-                
-                <div class="notes">
-                    {% for note in notes %}
-                    <div class="note">
-                        <div class="page">
-                            <img class="yozh-img" src="../static/images/info/йожъ.svg" alt="йожъ">
-                            <span>с. {{ note.page }}</span>
-                        </div>
-                        
-                        <div class="book-text">
-                                <a onclick="">
-                                    {{ note.content }}
-                                </a>
-                                
+        <div class="notes-container">
+            <h2 class="notes-title">Заметки</h2>
 
-                        </div>
-    
-                        <div class="buttons">
-                            <button class="delete-note"><img src="../static/images/info/трэш кэн точка свэээг.svg" alt="Удалить"></button>
-                            <button class="link-to-book"><img src="../static/images/info/link-to-text.svg" alt=""></button>
+            <div class="notes">
+                {% for note in notes %}
+                <div class="note">
+                    <div class="page">
+                        <img class="yozh-img" src="../static/images/info/йожъ.svg" alt="йожъ">
+                        <span>с. {{ note.page }}</span>
+                    </div>
+
+                    <div class="book-text">
+                        <a onclick="" data-target="#modal{{note.id}}" class="btn">
+                            {{ note.content }}
+                        </a>
+                    </div>
+
+                    <div class="buttons">
+                        <button  class="delete-note"><img src="../static/images/info/трэш кэн точка свэээг.svg"
+                                                         alt="Удалить"></button>
+                        <a href="../../reader/{{note.book_id}}/{{note.page}}"><img class="link-to-book" src="../static/images/info/link-to-text.svg" alt=""></a>
+
+                        <div class="modal" id="modal{{note.id}}">
+                            <div class="note-content">{{note.content}}</div>
+                            <br>
+                            <hr class="content-note-separator">
+                            <br>
+                            <div class="note-of-note">{{note.note}}</div>
                         </div>
                     </div>
+                </div>
+                {% endfor %}
+                <!--                    <div class="note">-->
+                <!--                        <div class="page">-->
+                <!--                            <img class="yozh-img" src="йожъ.svg" alt="йожъ">-->
+                <!--                            <span>с. 256</span>-->
+                <!--                        </div>-->
+                <!--                        -->
+                <!--                        <div class="book-text">-->
+                <!--                                <a onclick="">-->
+                <!--                                    В начале сотворил Бог небо и землю. Земля же была безвидна и пуста, и тьма над бездною...-->
+                <!--                                </a>-->
+                <!--                                -->
+
+                <!--                        </div>-->
+                <!--    -->
+                <!--                        <div class="buttons">-->
+                <!--                            <button class="delete-note"><img src="трэш кэн точка свэээг.svg" alt="Удалить"></button>-->
+                <!--                            <button class="link-to-book"><img src="link-to-text.svg" alt=""></button>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+            </div>
+
+        </div>
+
+        <div class="bookmarks-container">
+            <div class="bookmarks-content">
+                <h2 class="bookmarks-title">Закладки</h2>
+                {% if last_bookmark %}
+                <a href="/reader/{{ book.id }}/{{ last_bookmark }}">
+                    <div class="last-bookmark">Стр. {{ last_bookmark }}</div>
+                </a>
+                <ul class="bookmarks-list">
+                    {% for bookmark in bookmarks %}
+                    <li class="bookmark"><a href="/reader/{{ book.id }}/{{ bookmark }}">Cтр. {{ bookmark }}</a></li>
                     {% endfor %}
-<!--                    <div class="note">-->
-<!--                        <div class="page">-->
-<!--                            <img class="yozh-img" src="йожъ.svg" alt="йожъ">-->
-<!--                            <span>с. 256</span>-->
-<!--                        </div>-->
-<!--                        -->
-<!--                        <div class="book-text">-->
-<!--                                <a onclick="">-->
-<!--                                    В начале сотворил Бог небо и землю. Земля же была безвидна и пуста, и тьма над бездною...-->
-<!--                                </a>-->
-<!--                                -->
-
-<!--                        </div>-->
-<!--    -->
-<!--                        <div class="buttons">-->
-<!--                            <button class="delete-note"><img src="трэш кэн точка свэээг.svg" alt="Удалить"></button>-->
-<!--                            <button class="link-to-book"><img src="link-to-text.svg" alt=""></button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                </div>
-                
-            </div>
-
-            <div class="bookmarks-container">
-                <div class="bookmarks-content">
-                    <h2 class="bookmarks-title">Закладки</h2>
-                    {% if last_bookmark %}
-                    <a href="/reader/{{ book.id }}/{{ last_bookmark }}"><div class="last-bookmark">Стр. {{ last_bookmark }}</div></a>
-                    <ul class="bookmarks-list">
-                        {% for bookmark in bookmarks %}
-                            <li class="bookmark"><a href="/reader/{{ book.id }}/{{ bookmark }}">Cтр. {{ bookmark }}</a></li>
-                        {% endfor %}
-                    </ul>
-                    {% else %}
-                    <h2>Закладок нет, убирайтесь</h2>
-                    {% endif %}
-                </div>
+                </ul>
+                {% else %}
+                <h2>Закладок нет, убирайтесь</h2>
+                {% endif %}
             </div>
         </div>
+    </div>
 
-    </main>
+</main>
 </body>
-
+<script src="{{ url_for('static', filename='scripts/info.js') }}"></script>
 </html>
