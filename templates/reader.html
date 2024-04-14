@@ -6,51 +6,6 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/reader.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#btn").click(
-                function () {
-                    const element = document.getElementById('bookmark');
-
-                    if (element.style.display === 'none') {
-                        element.style.display = 'inherit';
-                    } else {
-                        element.style.display = 'none';
-                    }
-
-                    const element2 = document.getElementById('bookmark-filled');
-
-                    if (element2.style.display === 'none') {
-                        element2.style.display = 'inherit';
-                    } else {
-                        element2.style.display = 'none';
-                    }
-                    sendAjaxForm('bookmark_form', 'make_bookmark');
-                    return false;
-                }
-            );
-        });
-
-        function sendAjaxForm(ajax_form, url) {
-            const data = {
-                book_id: $("#book_id").val(),
-                page: $("#page").val(),
-            };
-
-            $.ajax({
-                url: url,
-                type: "POST",
-                dataType: "html",
-                data: data,
-                success: function (response) {
-                    console.log("Отправлено");
-                },
-                error: function (response) {
-                    console.log("Ошибка");
-                }
-            });
-        }
-    </script>
 </head>
 
 <body>
@@ -89,7 +44,12 @@
     <button class="up-comment-button">Коментарии</button>
     <div class="button-row">
         <a><img class="comment-img" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
-        <a><img class="highlight-img" src="{{ url_for('static', filename='images/pencil.png') }}" alt=""></a>
+        <form id="highlight_form">
+            <a onclick="getSelectedTextIndices()"><img class="highlight-img"
+                                                   src="{{ url_for('static', filename='images/pencil.png') }}"
+                                                   alt=""></a>
+        </form>
+
         <form id="bookmark_form">
             <input style="display: none" type="text" id="book_id" value="{{ book_id }}">
             <input style="display: none" type="text" id="page" value="{{ page }}">
@@ -97,10 +57,10 @@
                                   style="display: {% if have_bookmark %}none{% else %}inherit{% endif %}"
                                   src="{{ url_for('static', filename='images/bookmark_img.svg') }}"
                                   alt="">
-                            <img id="bookmark-filled" class="bookmark-img-filled"
-                                  style="display: {% if have_bookmark %}inherit{% else %}none{% endif %}"
-                                  src="{{ url_for('static', filename='images/bookmark_filled_img.png') }}"
-                                  alt="">
+                <img id="bookmark-filled" class="bookmark-img-filled"
+                     style="display: {% if have_bookmark %}inherit{% else %}none{% endif %}"
+                     src="{{ url_for('static', filename='images/bookmark_filled_img.png') }}"
+                     alt="">
             </button>
         </form>
 
@@ -156,7 +116,7 @@
     </div>
 
     <div class="text-container">
-        <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui maximus justo
+        <div id="content" class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui maximus justo
             cursus suscipit. Maecenas placerat nec ex non egestas. Curabitur elit dolor, aliquet id ante sit amet,
             volutpat ultrices metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
             turpis egestas. Vestibulum porta malesuada massa, ut bibendum diam tristique nec. Curabitur congue elit
