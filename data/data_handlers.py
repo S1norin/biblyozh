@@ -20,7 +20,15 @@ def file_handler(name, n):
             soup = Soup(x.read(), 'lxml')
             string = "\n".join([*map(compile_chapter, soup.find_all('section'))])
     x.close()
-    result = [string[i:i+n]for i in range(0, len(string) - n, n)]
+    string = string.split()
+    result = [""]
+    count = 0
+    for i in string:
+        count += len(i)
+        result[-1] = result[-1] + " " + i
+        if count >= n:
+            count = 0
+            result.append("")
     return result
 
-print(file_handler("test_files/test_file_3.fb2", 3))
+print(file_handler("test_files/test_file_3.fb2", 50))
