@@ -151,10 +151,6 @@ def reader_selected(book_id, current_page):
             db_sess.query(User).filter(User.id == selected_user.id).update({"last_book": book_id})
             db_sess.query(Book).filter(Book.id == selected_book.id).update({"last_page": current_page})
             db_sess.commit()
-            if note_form.validate_on_submit():
-                note = Note(note=note_form.note.data, book_id=selected_book.id, user_id=selected_user.id)
-                db_sess.add(note)
-                db_sess.commit()
             return render_template('reader.html', book=selected_book, user=selected_user, book_id=book_id,
                                    page=current_page, form=note_form, have_bookmark=have_bookmark)
         else:
@@ -187,7 +183,6 @@ def make_bookmark(book_id):
 @app.route('/reader/<int:book_id>/highlight', methods=['POST'])
 def make_highlight(book_id):
     data = [*request.form.items()]
-    print(data)
     if len(data) == 3:
         start = data[0][1]
         end = data[1][1]
@@ -201,6 +196,21 @@ def make_highlight(book_id):
         else:
             highlighted = highlighted + save_data
         db_sess.query(Book).filter(Book.id == selected_book.id).update({"highlighted": highlighted})
+        db_sess.commit()
+    return make_response('you are not supposed to see this, get the hell out of here')
+
+
+@app.route('/reader/<int:book_id>/make_note', methods=['POST'])
+def make_note(book_id):
+    data = [*request.form.items()]
+    note = data[0][1]
+    content = data[1][1]
+    page = data[2][1]
+    db_sess = db_session.create_session()
+    if content:
+        short_content = content[:140] + '...'
+        note = Note(user_id=oleg.id, book_id=book_id, content=content, short_content=short_content, page=page, note=note)
+        db_sess.add(note)
         db_sess.commit()
     return make_response('you are not supposed to see this, get the hell out of here')
 
@@ -252,7 +262,7 @@ def about(book_id):
             bookmarks = []
             last_bookmark = None
         if selected_book is not None:
-            return render_template('info.html', book=selected_book, note=selected_notes, bookmarks=bookmarks,
+            return render_template('info.html', book=selected_book, notes=selected_notes, bookmarks=bookmarks,
                                    last_bookmark=last_bookmark)
         else:
             abort(404)

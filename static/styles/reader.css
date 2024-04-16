@@ -187,6 +187,7 @@ body {
     border-radius: 10px;
     background-color: #F6CA97;
     border-style: none;
+    font-size: 14px;
 }
 
 .up-about-book-button {
@@ -230,13 +231,13 @@ body {
         font-size: 15px;
         display: inherit;
         text-align: center;
-        padding-top: 11px;
+        padding-top: 9px;
         font-weight: bolder;
         width: 150px;
         border-radius: 20px;
         background-color: #F6CA97;
         border-style: none;
-        height: 25px;
+        height: 36px;
     }
 
     .up-comment-button {

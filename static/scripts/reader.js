@@ -84,3 +84,18 @@ function getSelectedTextIndices() {
     const data = {start: startIndex, end: endIndex, page: document.getElementById('page').value};
     sendAjaxForm('highlight_form', 'highlight', data)
 }
+
+function makeNote() {
+    const selection = document.getElementById('memory').value;
+    const data = {note: document.getElementById('note').value, content: selection, page: document.getElementById('page').value};
+    sendAjaxForm('note_form', 'make_note', data);
+
+
+}
+
+function save() {
+    const selection = window.getSelection();
+    document.getElementById('memory').value = selection;
+    console.log(document.getElementById('memory').value)
+}
+

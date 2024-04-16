@@ -84,16 +84,14 @@
                         </div>
                         
                         <div class="book-text">
-                                <a onclick="">
-                                    {{ note.content }}
-                                </a>
-                                
-
+                            <a onclick="">
+                                {{ note.short_content }}
+                            </a>
                         </div>
     
                         <div class="buttons">
-                            <button class="delete-note"><img src="../static/images/info/трэш кэн точка свэээг.svg" alt="Удалить"></button>
-                            <button class="link-to-book"><img src="../static/images/info/link-to-text.svg" alt=""></button>
+                            <button onclick="delete_note()" class="delete-note"><img src="../static/images/info/трэш кэн точка свэээг.svg" alt="Удалить"></button>
+                            <button  class="link-to-book"><a href="/reader/{{ note.book_id }}/{{ note.page }}"><img src="../static/images/info/link-to-text.svg" alt=""></a></button>
                         </div>
                     </div>
                     {% endfor %}

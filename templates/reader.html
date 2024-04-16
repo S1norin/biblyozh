@@ -70,27 +70,23 @@
     </a>
 
     <div class="container">
-        <button class="btn" data-target="#modal1">Open Modal</button>
+        <button class="btn" data-target="#modal1" onclick="save()">Open Modal</button>
     </div>
 
     <div class="modal" id="modal1">
         <div class="materialContainer">
             <div class="box">
-                <form method="post">
+                <form id="note_form">
                     <div class="title">Добавить заметку</div>
+                        <div class="input">
+                            <label for="note">Комментарий (опционально)</label>
+                            <input class="form-control" id="note" type="text">
+                            <span class="spin"></span>
+                        </div>
 
-                    <div class="input">
-                        <label for="note">Комментарий (опционально)</label>
-                        {{ form.hidden_tag() }}
-                        {{ form.note(class="form-control", id="note", type="text") }}
-                        <span class="spin"></span>
-                    </div>
-
-
-                    <div class="button login">
-                        <button><span>Добавить</span> <i class="fa fa-check"></i></button>
-                    </div>
-
+                        <div class="button login">
+                            <button onclick="makeNote()"><span>Добавить</span> <i class="fa fa-check"></i></button>
+                        </div>
                 </form>
             </div>
         </div>
@@ -158,6 +154,7 @@
     </div>
 </div>
 </body>
+<input id="memory" style="display: none" value="">
 <script src="{{ url_for('static', filename='scripts/reader.js') }}"></script>
 <script src="{{ url_for('static', filename='scripts/note.js') }}"></script>
 </html>

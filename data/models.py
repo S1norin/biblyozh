@@ -69,6 +69,7 @@ class Note(SqlAlchemyBase):
                                 sqlalchemy.ForeignKey("books.id"))
     content = sqlalchemy.Column(sqlalchemy.String) # То, что выделил пользователь
     note = sqlalchemy.Column(sqlalchemy.String) # То, что пользователь может написать, а может и не написать
+    short_content = sqlalchemy.Column(sqlalchemy.String)
     page = sqlalchemy.Column(sqlalchemy.Integer)
     user = orm.relationship('User')
     book = orm.relationship('Book')
