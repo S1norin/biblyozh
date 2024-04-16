@@ -273,13 +273,10 @@ def about(book_id):
 
 @app.route('/about/<int:book_id>/delete_note/<int:note_id>')  # TODO: Сделать удаление заметки
 def delete_note(book_id, note_id):
-    # data = request.form.items()
     db_sess = db_session.create_session()
-    selected_note = db_sess.query(Note).filter(Note.id == note_id).first()
-    # current_page = [*data][1][1]
     db_sess.query(Note).filter(Note.id == note_id).delete()
     db_sess.commit()
-    return make_response('you are not supposed to see this, get the hell out of here')
+    return redirect(f'/about/{book_id}')
 
 
 def main():

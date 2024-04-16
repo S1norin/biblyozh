@@ -46,8 +46,8 @@
         <a><img class="comment-img" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
         <form id="highlight_form">
             <a onclick="getSelectedTextIndices()"><img class="highlight-img"
-                                                   src="{{ url_for('static', filename='images/pencil.png') }}"
-                                                   alt=""></a>
+                                                       src="{{ url_for('static', filename='images/pencil.png') }}"
+                                                       alt=""></a>
         </form>
 
         <form id="bookmark_form">
@@ -78,15 +78,15 @@
             <div class="box">
                 <form id="note_form">
                     <div class="title">Добавить заметку</div>
-                        <div class="input">
-                            <label for="note">Комментарий (опционально)</label>
-                            <input class="form-control" id="note" type="text">
-                            <span class="spin"></span>
-                        </div>
+                    <div class="input">
+                        <label for="note">Комментарий (опционально)</label>
+                        <input class="form-control" id="note" type="text">
+                        <span class="spin"></span>
+                    </div>
 
-                        <div class="button login">
-                            <button onclick="makeNote()"><span>Добавить</span> <i class="fa fa-check"></i></button>
-                        </div>
+                    <div class="button login">
+                        <button onclick="makeNote()"><span>Добавить</span> <i class="fa fa-check"></i></button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -112,7 +112,8 @@
     </div>
 
     <div class="text-container">
-        <div id="content" class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui maximus justo
+        <div id="content" class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac dui
+            maximus justo
             cursus suscipit. Maecenas placerat nec ex non egestas. Curabitur elit dolor, aliquet id ante sit amet,
             volutpat ultrices metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
             turpis egestas. Vestibulum porta malesuada massa, ut bibendum diam tristique nec. Curabitur congue elit
@@ -135,14 +136,26 @@
             Maecenas placerat nec ex non egestas.
         </div>
 
-        <div class="progress-parent">
-            <div class="page-count"></div>
-            <div class="progress-percent">заглушка 2</div>
+        <div class="book-info-container">
+            <div class="cover-and-progress">
+                <div class="book">
+                    <div class="cover-container">
+                        <img class="cover-img" src="../static/{{ book.cover_path }}" alt="">
+                    </div>
+                    <div class="book-info">
+                        <div class="progress-bar">
+                            <div class="completed" style="width: {{ book.last_page / book.work_size * 10000 // 1 /100 }}%"></div>
+                            <div class="remain"></div>
+                        </div>
+                        <div class="info">
+                            <span class="pages">{{ book.last_page }}/{{ book.work_size }}</span>
+                            <span class="name">{{ book.name }}</span>
+                            <span class="percentage">{{ book.last_page / book.work_size * 10000 // 1 /100 }}%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--            <div class="progess-bar-overall">-->
-        <!--                <div class="empty-progress-bar"></div>-->
-        <!--                <div class="completed-progress-bar"></div>-->
-        <!--        </div>-->
 
     </div>
 
