@@ -40,14 +40,19 @@
         </div>
     </header>
 
-    <main>
-        <div class="title-container">
-            <div class="book-name-container">
-                <h1 class="book-name">{{ book.name }}</h1>
-                <button class="change-name-btn"><img src="" alt=""></button>
-            </div>
-            <h2 class="author">{{ book.author }}</h2>
+<main>
+    <div class="container">
+    </div>
+
+
+    <div id="overlay"></div>
+    <div class="title-container">
+        <div class="book-name-container">
+            <h1 class="book-name">{{ book.name }}</h1>
+            <button class="change-name-btn"><img src="" alt=""></button>
         </div>
+        <h2 class="author">{{ book.author }}</h2>
+    </div>
 
         <div class="content-container">
             <div class="book-info-container">
@@ -72,26 +77,34 @@
                 <div class="buttons"></div>
             </div>
 
-            <div class="notes-container">
-                <h2 class="notes-title">Заметки</h2>
-                
-                <div class="notes">
-                    {% for note in notes %}
-                    <div class="note">
-                        <div class="page">
-                            <img class="yozh-img" src="../static/images/info/йожъ.svg" alt="йожъ">
-                            <span>с. {{ note.page }}</span>
-                        </div>
-                        
-                        <div class="book-text">
-                            <a onclick="">
-                                {{ note.short_content }}
-                            </a>
-                        </div>
-    
-                        <div class="buttons">
-                            <button onclick="delete_note()" class="delete-note"><img src="../static/images/info/трэш кэн точка свэээг.svg" alt="Удалить"></button>
-                            <button  class="link-to-book"><a href="/reader/{{ note.book_id }}/{{ note.page }}"><img src="../static/images/info/link-to-text.svg" alt=""></a></button>
+        <div class="notes-container">
+            <h2 class="notes-title">Заметки</h2>
+
+            <div class="notes">
+                {% for note in notes %}
+                <div class="note">
+                    <div class="page">
+                        <img class="yozh-img" src="../static/images/info/йожъ.svg" alt="йожъ">
+                        <span>с. {{ note.page }}</span>
+                    </div>
+
+                    <div class="book-text">
+                        <a onclick="" data-target="#modal{{note.id}}" class="btn">
+                            {{ note.content }}
+                        </a>
+                    </div>
+
+                    <div class="buttons">
+                        <button  class="delete-note"><img src="../static/images/info/трэш кэн точка свэээг.svg"
+                                                         alt="Удалить"></button>
+                        <a href="../../reader/{{note.book_id}}/{{note.page}}"><img class="link-to-book" src="../static/images/info/link-to-text.svg" alt=""></a>
+
+                        <div class="modal" id="modal{{note.id}}">
+                            <div class="note-content">{{note.content}}</div>
+                            <br>
+                            <hr class="content-note-separator">
+                            <br>
+                            <div class="note-of-note">{{note.note}}</div>
                         </div>
                     </div>
                     {% endfor %}
