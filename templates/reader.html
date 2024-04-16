@@ -43,12 +43,7 @@
 <div class="buttons-container">
     <button class="up-comment-button">Коментарии</button>
     <div class="button-row">
-        <a><img class="comment-img" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
-        <form id="highlight_form">
-            <a onclick="getSelectedTextIndices()"><img class="highlight-img"
-                                                       src="{{ url_for('static', filename='images/pencil.png') }}"
-                                                       alt=""></a>
-        </form>
+        <a><img class="comment-img" data-target="#modal1" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
 
         <form id="bookmark_form">
             <input style="display: none" type="text" id="book_id" value="{{ book_id }}">
@@ -68,10 +63,6 @@
     <a href="/about/{{ book.id }}">
         <div class="up-about-book-button">О книге</div>
     </a>
-
-    <div class="container">
-        <button class="btn" data-target="#modal1" onclick="save()">Open Modal</button>
-    </div>
 
     <div class="modal" id="modal1">
         <div class="materialContainer">

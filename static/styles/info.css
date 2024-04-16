@@ -373,7 +373,7 @@ body {
 }
 
 .modal {
-  width: 450px;
+  width: 800px;
   position: fixed;
   top: -50%;
   left: 50%;
@@ -386,7 +386,8 @@ body {
 }
 
 .modal.active {
-  top: 35%;
+    display: block;
+  top: 45%;
 }
 
 .modal .header {
@@ -417,6 +418,7 @@ body {
 }
 
 .modal {
+    top: -100%;
     border-radius: 25px;
     font-family: "Cambria";
     font-size: 22px;
