@@ -209,7 +209,8 @@ def make_note(book_id):
     db_sess = db_session.create_session()
     if content:
         short_content = content[:140] + '...'
-        note = Note(user_id=oleg.id, book_id=book_id, content=content, short_content=short_content, page=page, note=note)
+        note = Note(user_id=oleg.id, book_id=book_id, content=content, short_content=short_content, page=page,
+                    note=note)
         db_sess.add(note)
         db_sess.commit()
     return make_response('you are not supposed to see this, get the hell out of here')
@@ -262,14 +263,15 @@ def about(book_id):
             bookmarks = []
             last_bookmark = None
         if selected_book is not None:
-            return render_template('info.html', book=selected_book, note=selected_notes, bookmarks=bookmarks,
+            return render_template('info.html', book=selected_book, notes=selected_notes, bookmarks=bookmarks,
                                    last_bookmark=last_bookmark)
         else:
             abort(404)
     else:
         return redirect("/login")
 
-@app.route('/about/<int:book_id>/delete_note/<int:note_id>') # TODO: Сделать удаление заметки
+
+@app.route('/about/<int:book_id>/delete_note/<int:note_id>')  # TODO: Сделать удаление заметки
 def delete_note(book_id, note_id):
     # data = request.form.items()
     db_sess = db_session.create_session()
@@ -278,6 +280,7 @@ def delete_note(book_id, note_id):
     db_sess.query(Note).filter(Note.id == note_id).delete()
     db_sess.commit()
     return make_response('you are not supposed to see this, get the hell out of here')
+
 
 def main():
     db_session.global_init("db/db.db")
