@@ -143,7 +143,7 @@ def reader_selected(book_id, current_page):
         if work_size < current_page or current_page < 1:
             return redirect(f'/reader/{book_id}/1')
         next_page = 1 if current_page == work_size else current_page + 1
-        prev_page = work_size - 1 if current_page != 1 else work_size
+        prev_page = current_page - 1 if current_page != 1 else work_size
         bookmarks_data = selected_book.bookmarks
         if not bookmarks_data:
             have_bookmark = False
