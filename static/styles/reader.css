@@ -168,6 +168,7 @@ body {
 }
 
 .content {
+    white-space: pre-wrap;
     font-family: "Cambria";
     font-size: 22px;
 }

@@ -1,14 +1,16 @@
 from bs4 import BeautifulSoup as Soup, Tag
 import lxml
 
+
 def compile_chapter(section: Tag):
     title = title_tag.get_text(strip=True) if (
         title_tag := section.find('title')
     ) else ''
-    rows = '\n'.join(
+    rows = '\n\t'.join(
         [p.get_text(strip=True) for p in title_tag.find_next_siblings('p')]
     )
     return f'{title}\n{rows}'
+
 
 def file_handler(name, n):
     images = []
@@ -20,7 +22,8 @@ def file_handler(name, n):
             soup = Soup(x.read(), 'lxml')
             string = "\n".join([*map(compile_chapter, soup.find_all('section'))])
     x.close()
-    result = [string[i:i+n]for i in range(0, len(string) - n, n)]
+    result = [string[i:i + n] for i in range(0, len(string) - n, n)]
     return result
 
-print(file_handler("test_files/test_file_3.fb2", 3))
+if __name__ == "__main__":
+    print(file_handler("../static/books/79348.fb2", 30))

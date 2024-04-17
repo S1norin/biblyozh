@@ -6,6 +6,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from data import db_session
 from data.forms import LoginForm, RegisterForm, FileForm, NoteForm
 from data.models import User, Book, Note
+from data.data_handlers import file_handler
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'biblyozh_must_be_completed_at_any_cost'
@@ -89,9 +90,10 @@ def upload():
             while db_sess.query(Book).filter(Book.id == book_id).first():
                 book_id = random.randrange(100000)
             book = Book(id=book_id, name=form.name.data, author=form.author.data, work_size=-1,
-                        user_id=selected_user.id)
+                        user_id=selected_user.id, last_page=1)
             book.set_cover_path(book_id, form.cover.data.filename)
             book.set_book_path(book_id, form.file.data.filename)
+            book.work_size = len(file_handler(f"static/{book.cover_path}", 1990))
             form.cover.data.save(f'{"static/" + book.cover_path}')
             form.file.data.save(f'{"static/" + book.book_path}')
             db_sess.add(book)
@@ -158,7 +160,7 @@ def reader_selected(book_id, current_page):
             db_sess.commit()
             return render_template('reader.html', book=selected_book, user=selected_user, book_id=book_id,
                                    page=current_page, form=note_form, have_bookmark=have_bookmark, next_page=next_page,
-                                   prev_page=prev_page)
+                                   prev_page=prev_page, page_content=file_handler(f"./static/{selected_book.book_path}", 1990)[current_page - 1])
         else:
             abort(404)
     else:
