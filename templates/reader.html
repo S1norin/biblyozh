@@ -41,11 +41,14 @@
 </header>
 
 <div class="buttons-container">
-    <button class="up-comment-button">Коментарии</button>
+    <button class="up-comment-button" onclick="play()">Смешной звук</button>
     <div class="next_page_and_btns">
-        <a href="/reader/{{ book.id }}/{{ prev_page }}"><img class="next_page_img" src="{{ url_for('static', filename='images/prev_page.svg') }}" alt=""></a>
+        <a href="/reader/{{ book.id }}/{{ prev_page }}"><img class="next_page_img"
+                                                             src="{{ url_for('static', filename='images/prev_page.svg') }}"
+                                                             alt=""></a>
         <div class="button-row">
-            <a><img class="comment-img" data-target="#modal1" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
+            <a><img class="comment-img" data-target="#modal1"
+                    src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
             <form id="bookmark_form">
                 <input style="display: none" type="text" id="book_id" value="{{ book_id }}">
                 <input style="display: none" type="text" id="page" value="{{ page }}">
@@ -60,7 +63,9 @@
                 </button>
             </form>
         </div>
-        <a href="/reader/{{ book.id }}/{{ next_page }}"><img class="next_page_img" src="{{ url_for('static', filename='images/next_page.svg') }}" alt=""></a>
+        <a href="/reader/{{ book.id }}/{{ next_page }}"><img class="next_page_img"
+                                                             src="{{ url_for('static', filename='images/next_page.svg') }}"
+                                                             alt=""></a>
     </div>
     <a href="/about/{{ book.id }}">
         <div class="up-about-book-button">О книге</div>
@@ -91,17 +96,7 @@
 
 <div class="page-content">
     <div class="left-container">
-        <div class="notes-title">Мои заметки</div>
-        <button class="comment-button">Коментарии</button>
         <button class="quotes-button" onclick="play()">Смешной звук</button>
-
-        <script>
-            function play() {
-                var audio = new Audio(
-                    '{{ url_for('static', filename='metal-pipe-falling-sound-effect.mp3') }}');
-                audio.play();
-            }
-        </script>
     </div>
 
     <div class="text-container">
@@ -115,7 +110,8 @@
                     </div>
                     <div class="book-info">
                         <div class="progress-bar">
-                            <div class="completed" style="width: {{ book.last_page / book.work_size * 10000 // 1 /100 }}%"></div>
+                            <div class="completed"
+                                 style="width: {{ book.last_page / book.work_size * 10000 // 1 /100 }}%"></div>
                             <div class="remain"></div>
                         </div>
                         <div class="info">
@@ -141,4 +137,11 @@
 <input id="memory" style="display: none" value="">
 <script src="{{ url_for('static', filename='scripts/reader.js') }}"></script>
 <script src="{{ url_for('static', filename='scripts/note.js') }}"></script>
+<script>
+    function play() {
+        var audio = new Audio(
+            '{{ url_for('static', filename='metal-pipe-falling-sound-effect.mp3') }}');
+        audio.play();
+    }
+</script>
 </html>
