@@ -42,23 +42,25 @@
 
 <div class="buttons-container">
     <button class="up-comment-button">Коментарии</button>
-    <div class="button-row">
-        <a><img class="comment-img" data-target="#modal1" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
-
-        <form id="bookmark_form">
-            <input style="display: none" type="text" id="book_id" value="{{ book_id }}">
-            <input style="display: none" type="text" id="page" value="{{ page }}">
-            <button id="btn"><img id="bookmark" class="bookmark-img"
-                                  style="display: {% if have_bookmark %}none{% else %}inherit{% endif %}"
-                                  src="{{ url_for('static', filename='images/bookmark_img.svg') }}"
-                                  alt="">
-                <img id="bookmark-filled" class="bookmark-img-filled"
-                     style="display: {% if have_bookmark %}inherit{% else %}none{% endif %}"
-                     src="{{ url_for('static', filename='images/bookmark_filled_img.png') }}"
-                     alt="">
-            </button>
-        </form>
-
+    <div class="next_page_and_btns">
+        <a href="/reader/{{ book.id }}/{{ prev_page }}"><img class="next_page_img" src="{{ url_for('static', filename='images/prev_page.svg') }}" alt=""></a>
+        <div class="button-row">
+            <a><img class="comment-img" data-target="#modal1" src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
+            <form id="bookmark_form">
+                <input style="display: none" type="text" id="book_id" value="{{ book_id }}">
+                <input style="display: none" type="text" id="page" value="{{ page }}">
+                <button id="btn"><img id="bookmark" class="bookmark-img"
+                                      style="display: {% if have_bookmark %}none{% else %}inherit{% endif %}"
+                                      src="{{ url_for('static', filename='images/bookmark_img.svg') }}"
+                                      alt="">
+                    <img id="bookmark-filled" class="bookmark-img-filled"
+                         style="display: {% if have_bookmark %}inherit{% else %}none{% endif %}"
+                         src="{{ url_for('static', filename='images/bookmark_filled_img.png') }}"
+                         alt="">
+                </button>
+            </form>
+        </div>
+        <a href="/reader/{{ book.id }}/{{ next_page }}"><img class="next_page_img" src="{{ url_for('static', filename='images/next_page.svg') }}" alt=""></a>
     </div>
     <a href="/about/{{ book.id }}">
         <div class="up-about-book-button">О книге</div>
