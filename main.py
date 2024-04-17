@@ -271,7 +271,7 @@ def about(book_id):
         return redirect("/login")
 
 
-@app.route('/about/<int:book_id>/delete_note/<int:note_id>')  # TODO: Сделать удаление заметки
+@app.route('/about/<int:book_id>/delete_note/<int:note_id>')
 def delete_note(book_id, note_id):
     db_sess = db_session.create_session()
     db_sess.query(Note).filter(Note.id == note_id).delete()

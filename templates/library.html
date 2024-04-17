@@ -66,13 +66,14 @@
                             </div>
                             <div class="book-info">
                                 <div class="progress-bar">
-                                    <div class="completed" style="width: {{ book.work_size }}%"></div>
+                                    <div class="completed"
+                                         style="width: {{ book.last_page / book.work_size * 10000 // 1 /100 }}%"></div>
                                     <div class="remain"></div>
                                 </div>
                                 <div class="info">
-                                    <span class="pages">{{ book.work_size }}</span>
+                                    <span class="pages">{{ book.last_page }}/{{ book.work_size }}</span>
                                     <span class="name">{{ book.name }}</span>
-                                    <span class="percentage">{{ book.work_size / 100 }}%</span>
+                                    <span class="percentage">{{ book.last_page / book.work_size * 10000 // 1 /100 }}%</span>
                                 </div>
                             </div>
                         </button>
