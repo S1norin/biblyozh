@@ -137,12 +137,13 @@ def reader_selected(book_id, current_page):
         note_form = NoteForm()
         selected_user = db_sess.query(User).filter(User.id == oleg.id).first()
         selected_book = db_sess.query(Book).filter(Book.id == book_id).first()
+        work_size = selected_book.work_size
         if selected_book.user_id != selected_user.id:
             return redirect('/library')  # Пользователь попытался открыть чужую книгу
-        if selected_book.work_size > current_page or current_page < 1:
+        if work_size < current_page or current_page < 1:
             return redirect(f'/reader/{book_id}/1')
-        next_page = 1 if current_page == selected_book.work_size else current_page + 1
-        prev_page = selected_book.work_size - 1 if current_page != 1 else selected_book.work_size
+        next_page = 1 if current_page == work_size else current_page + 1
+        prev_page = work_size - 1 if current_page != 1 else work_size
         bookmarks_data = selected_book.bookmarks
         if not bookmarks_data:
             have_bookmark = False
