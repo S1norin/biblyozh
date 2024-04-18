@@ -47,7 +47,7 @@
                                                              src="{{ url_for('static', filename='images/prev_page.svg') }}"
                                                              alt=""></a>
         <div class="button-row">
-            <a><img class="comment-img" data-target="#modal1"
+            <a onclick='save()'><img class="comment-img" data-target="#modal1"
                     src="{{ url_for('static', filename='images/comment.png') }}" alt=""></a>
             <form id="bookmark_form">
                 <input style="display: none" type="text" id="book_id" value="{{ book_id }}">
