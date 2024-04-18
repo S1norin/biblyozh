@@ -31,6 +31,3 @@ def file_handler(name, n):
             count = 0
             result.append("")
     return result
-
-if __name__ == "__main__":
-    print(file_handler("../static/books/79348.fb2", 30))
