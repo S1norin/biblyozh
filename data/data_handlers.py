@@ -13,16 +13,23 @@ def compile_chapter(section: Tag):
 
 
 def file_handler(name, n):
-    images = []
+    print(name)
     if name.split(".")[-1] == "txt":
         x = open(name, mode="r")
         string = x.read()
-    elif name.split(".")[-1] == "fb2":
+    else:
         with open(name, 'r', encoding='utf-8') as x:
-            soup = Soup(x.read(), 'lxml')
+            soup = Soup(x.read(), 'xml')
             string = "\n".join([*map(compile_chapter, soup.find_all('section'))])
-    x.close()
-    result = [string[i:i + n] for i in range(0, len(string) - n, n)]
+    string = string.split()
+    result = [""]
+    count = 0
+    for i in string:
+        count += len(i)
+        result[-1] = result[-1] + " " + i
+        if count >= n:
+            count = 0
+            result.append("")
     return result
 
 if __name__ == "__main__":
