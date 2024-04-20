@@ -29,7 +29,10 @@ class User(SqlAlchemyBase, UserMixin):
 class Book(SqlAlchemyBase):
     def set_cover_path(self, id, original_filename):
         format = secure_filename(original_filename).split(".")[-1]
-        self.cover_path = f"covers/{'.'.join([str(id), format])}"
+        if id != "default":
+            self.cover_path = f"covers/{'.'.join([str(id), format])}"
+        else:
+            self.cover_path = f"covers/default.png"
 
     def set_book_path(self, id, original_filename):
         format = secure_filename(original_filename).split(".")[-1]

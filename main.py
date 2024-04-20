@@ -91,7 +91,10 @@ def upload():
                 book_id = random.randrange(100000)
             book = Book(id=book_id, name=form.name.data, author=form.author.data, work_size=-1,
                         user_id=selected_user.id, last_page=1)
-            book.set_cover_path(book_id, form.cover.data.filename)
+            if form.cover.data.filename:
+                book.set_cover_path(book_id, form.cover.data.filename)
+            else:
+                book.set_cover_path("default", "default")
             book.set_book_path(book_id, form.file.data.filename)
             form.cover.data.save(f'{"static/" + book.cover_path}')
             form.file.data.save(f'{"static/" + book.book_path}')
