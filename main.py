@@ -221,6 +221,12 @@ def make_note(book_id):
                     note=note)
         db_sess.add(note)
         db_sess.commit()
+    else:
+        short_content = content[:140] + '...'
+        note = Note(user_id=oleg.id, book_id=book_id, content="Вы не выделили текст при создании заметки", short_content="Текст отсутствует", page=page,
+                    note=note)
+        db_sess.add(note)
+        db_sess.commit()
     return make_response('you are not supposed to see this, get the hell out of here')
 
 

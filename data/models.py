@@ -48,7 +48,7 @@ class Book(SqlAlchemyBase):
     book_path = sqlalchemy.Column(sqlalchemy.String)
     progress = sqlalchemy.Column(sqlalchemy.Integer)
     bookmarks = sqlalchemy.Column(sqlalchemy.String)
-    last_page = sqlalchemy.Column(sqlalchemy.String)
+    last_page = sqlalchemy.Column(sqlalchemy.Integer)
     highlighted = sqlalchemy.Column(sqlalchemy.String, default='')
     user = orm.relationship('User')
 
@@ -67,7 +67,7 @@ class Note(SqlAlchemyBase):
                                 sqlalchemy.ForeignKey("users.id"))
     book_id = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("books.id"))
-    content = sqlalchemy.Column(sqlalchemy.String) # То, что выделил пользователь
+    content = sqlalchemy.Column(sqlalchemy.String, default="Вы не выделили текст при создании заметки") # То, что выделил пользователь
     note = sqlalchemy.Column(sqlalchemy.String) # То, что пользователь может написать, а может и не написать
     short_content = sqlalchemy.Column(sqlalchemy.String)
     page = sqlalchemy.Column(sqlalchemy.Integer)
