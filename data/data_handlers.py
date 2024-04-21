@@ -13,7 +13,6 @@ def compile_chapter(section: Tag):
 
 
 def file_handler(name, n):
-    print(name)
     if name.split(".")[-1] == "txt":
         x = open(name, mode="r", encoding='utf-8')
         string = x.read()
