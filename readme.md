@@ -3,7 +3,7 @@
 
 *Cоздано в рамках Яндекс.Лицей*
 
-(Сопроводительное письмо к проетку)[https://vk.com/doc612670777_679583239?hash=Qr0ZjZzldGoNpn4HLCDDpeqaWqqdbwWYCtnI7jWTlqk&dl=Jt6SWqWDWNlLeLlZ1QzQPWZKozVJCz7yTUnGYkmp5YD]
+[Сопроводительное письмо к проетку](https://vk.com/doc612670777_679583239?hash=Qr0ZjZzldGoNpn4HLCDDpeqaWqqdbwWYCtnI7jWTlqk&dl=Jt6SWqWDWNlLeLlZ1QzQPWZKozVJCz7yTUnGYkmp5YD)
 
 # Известные проблемы
 
